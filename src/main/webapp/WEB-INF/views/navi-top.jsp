@@ -1,5 +1,6 @@
 ﻿    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1298741_gw7g40ueihl.css">
+    <link rel="shortcut icon" href="/resources/favicon.ico">
 </head>
 <body>
 <div class="loading" id="loading">

@@ -9,6 +9,7 @@
     <title>登录</title>
     <link rel="stylesheet" href="<%=basePath%>/resources/css/login.css">
     <link rel="stylesheet" href="<%=basePath%>/resources/css/loading.css">
+    <link rel="shortcut icon" href="/resources/favicon.ico">
 </head>
 <body>
 <%

@@ -27,10 +27,10 @@
                 </span>
             </div>
             <div class="row summmary show-div">
-                摘要：${requestScope.article.articleSummary}
+                摘要：<pre>${requestScope.article.articleSummary}</pre>
             </div>
             <div class="row show-div">
-                正文：${requestScope.article.articleContent}
+                正文：<pre>${requestScope.article.articleContent}</pre>
             </div>
             <div class="row">
                 <textarea id="ReplyToArticle" maxlength="200"
