@@ -22,7 +22,7 @@
             }
         }
     });
-})
+});
 
 function iconOnClick(i) {
     loadingShow();

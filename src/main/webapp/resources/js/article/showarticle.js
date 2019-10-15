@@ -3,12 +3,12 @@
         loadingShow();
         window.location.href = document.referrer;
         loadingHide();
-    })
+    });
     $('#modifyArticle').click(function () {
         loadingShow();
         window.location.href = window.location.origin + "/Article/ModifyArticle/" + $(this).attr("name");
         loadingHide();
-    })
+    });
     $('#deleteArticle').click(function () {
         loadingShow();
         $.ajax({
@@ -27,8 +27,8 @@
                 loadingHide();
             }
         })
-    })
-})
+    });
+});
 function searchByAuthorId(search) {
     loadingShow();
     window.location.href = window.location.origin + "/Article/" + $(search).attr("name");
@@ -56,7 +56,7 @@ function submit_reply_button(reply) {
                         '   <div name="replyToReplyShow">\n' +
                         '   </div>\n' +
                         '   <div class="replyToReplyInput" name="'+ $('#user-name-label').attr("name") + '">\n' +
-                        '       <input type="text" name="ReplyToReply" placeholder="不超过100字" maxlength="100">\n' +
+                        '       <input type="text" name="ReplyToReply" onkeypress="inputReplyToReply(this)" placeholder="不超过100字" maxlength="100">\n' +
                         '       <i class="iconfont icon-huiche" onclick="submit_reply_i(this)"></i>\n' +
                         '   </div>\n' +
                         '</div>');

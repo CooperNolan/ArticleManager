@@ -24,7 +24,7 @@
                 }
             })
         }
-    })
+    });
     $('#Modify').click(function () {
         if (onblurTopic()) {
             loadingShow();
@@ -49,7 +49,7 @@
             })
         }
     })
-})
+});
 function onblurTopic() {
     if ($('#topic').val() == "") {
         $('#prompt').html("文章题目不能为空！");

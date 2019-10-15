@@ -6,12 +6,12 @@
         } else {
             window.name = "hasLoad";
         }
-    }
+    };
     var reg={
         username:/^[\w|\.]{6,12}$/,
         password:/^[\w|\.]{8,18}$/,
         VerificationCode:/^[A-Za-z0-9]{4}$/
-    }
+    };
 
     $(".txtb input").on("focus", function () {
         $(this).addClass("focus");
@@ -75,7 +75,7 @@
                 }
             });
         }
-    })
+    });
     $("#registered-registered").click(function () {
         var registered_username = $("#registered-username").val();
         var registered_password = $("#registered-password").val();
@@ -113,7 +113,7 @@
                 }
             });
         }
-    })
+    });
 
     var prompt;
 
