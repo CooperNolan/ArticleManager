@@ -56,11 +56,19 @@
         <div id="replyDiv">
             <c:forEach items="${requestScope.replyList}" var="reply">
             <div class="replyToArticle" name="${reply.replyId}">
-                <div class="show-div">${reply.userNickname}:${reply.replyContent}</div>
+                <div class="show-div">
+                        ${reply.userNickname}&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${reply.replyDate}"
+                                                                                     pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                    <pre>${reply.replyContent}</pre>
+                </div>
                 <div name="replyToReplyShow">
                     <c:forEach items="${reply.replyList}" var="reply2">
                         <div class="replyToReply">
-                            <div class="show-div">${reply2.userNickname}:${reply2.replyContent}</div>
+                            <div class="show-div">
+                                    ${reply2.userNickname}&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${reply2.replyDate}"
+                                                                                                  pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                                <pre>${reply2.replyContent}</pre>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>

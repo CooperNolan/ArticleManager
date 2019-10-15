@@ -176,7 +176,7 @@ public class ArticleController {
     }
 
     /**
-     * 更改文章状态为2
+     * 删除文章
      * @param articleId
      * @param response
      * @throws IOException

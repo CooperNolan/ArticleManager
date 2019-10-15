@@ -51,7 +51,8 @@ function submit_reply_button(reply) {
                 if (data.success) {
                     $('#replyDiv').append(
                         '<div class="replyToArticle" name="'+ data.replyId + '">\n' +
-                        '   <div class="show-div">'+ $('#user-name-label').text()+':'+$('#ReplyToArticle').val()+'</div>\n' +
+                        '   <div class="show-div">'+ $('#user-name-label').text()+'&nbsp;&nbsp;&nbsp;&nbsp;刚刚' +
+                        '<pre>'+ $('#ReplyToArticle').val()+'</pre></div>\n' +
                         '   <div name="replyToReplyShow">\n' +
                         '   </div>\n' +
                         '   <div class="replyToReplyInput" name="'+ $('#user-name-label').attr("name") + '">\n' +
@@ -85,7 +86,8 @@ function submit_reply_i(reply) {
                 if (data.success) {
                     $(reply).parent().parent().children('div[name="replyToReplyShow"]').append(
                         '<div class="replyToReply">\n' +
-                        '                            <div class="show-div">' + $('#user-name-label').text() + ':' + $(reply).parent().children('input').val() + '</div>\n' +
+                        '                            <div class="show-div">' + $('#user-name-label').text() + '&nbsp;&nbsp;&nbsp;&nbsp;刚刚' +
+                        '<pre>' + $(reply).parent().children('input').val() + '</pre></div>\n' +
                         '                        </div>');
                     $(reply).parent().children('input').val("");
                 } else {
