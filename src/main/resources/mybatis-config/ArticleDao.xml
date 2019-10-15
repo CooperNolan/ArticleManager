@@ -69,11 +69,11 @@
     </select>
 
     <sql id="insertArticleSqlList">
-        author_id,article_topic,article_summary,article_content,article_date,article_status
+        author_id,article_topic,article_summary,article_content,article_date,article_modify_date,article_status
     </sql>
     <insert id="insert" useGeneratedKeys="true" keyProperty="articleId">
         insert into article(<include refid="insertArticleSqlList"></include>)
-        values(#{authorId},#{articleTopic},#{articleSummary},#{articleContent},#{articleDate},#{articleStatus})
+        values(#{authorId},#{articleTopic},#{articleSummary},#{articleContent},#{articleDate},#{articleModifyDate},#{articleStatus})
     </insert>
 
     <update id="update">
@@ -83,6 +83,7 @@
             <if test="articleSummary != null and articleSummary != ''">article_summary = #{articleSummary},</if>
             <if test="articleContent != null and articleContent != ''">article_content = #{articleContent},</if>
             <if test="articleStatus != null and articleStatus != '' or 0 == articleStatus">article_status = #{articleStatus},</if>
+            article_modify_date = #{articleModifyDate},
         </set>
         where article_id = #{articleId}
     </update>

@@ -10,6 +10,7 @@ public class Article {
     private String articleSummary;//摘要
     private String articleContent;//文章
     private Date articleDate;//创建时间
+    private Date articleModifyDate;//最后一次修改时间时间
     private Integer articleStatus;//文章状态 0 正常 1 违规
 
     public Article() {
@@ -80,6 +81,14 @@ public class Article {
 
     public void setArticleDate(Date articleDate) {
         this.articleDate = articleDate;
+    }
+
+    public Date getArticleModifyDate() {
+        return articleModifyDate;
+    }
+
+    public void setArticleModifyDate(Date articleModifyDate) {
+        this.articleModifyDate = articleModifyDate;
     }
 
     public Integer getArticleStatus() {

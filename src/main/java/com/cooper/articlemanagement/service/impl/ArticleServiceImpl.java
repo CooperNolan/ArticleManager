@@ -177,6 +177,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int insert(Article article) throws ArticleRuntimeException {
         article.setArticleDate(new Date());
+        article.setArticleModifyDate(new Date());
         article.setArticleStatus(0);
         int influences = 0;
         try {
@@ -196,6 +197,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int update(Article article) throws ArticleRuntimeException {
         int influences = 0;
+        article.setArticleModifyDate(new Date());
         try {
             influences = articleDao.update(article);
         } catch (Exception e) {

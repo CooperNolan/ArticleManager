@@ -19,7 +19,7 @@ CREATE TABLE users (
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-insert into users(username,userpass,nickname,createTime,user_status,remark) values('Cooper','Cooper','Cooper',NOW(),2,'超级管理员');
+insert into users(username,userpass,nickname,createTime,user_status,remark) values('admin','admin','admin',NOW(),2,'超级管理员');
 
 CREATE TABLE article (
   article_id int(11) NOT NULL AUTO_INCREMENT COMMENT '文章编号',
@@ -28,6 +28,7 @@ CREATE TABLE article (
   article_summary varchar(200) DEFAULT NULL COMMENT '摘要',
   article_content text COMMENT '文章内容',
   article_date datetime NOT NULL COMMENT '创建时间',
+  article_modify_date datetime NOT NULL COMMENT '最后一次修改时间时间',
   article_status int(2) NOT NULL COMMENT '文章状态 0 正常 1 违规',
   PRIMARY KEY (article_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

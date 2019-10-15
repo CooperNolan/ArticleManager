@@ -21,8 +21,12 @@
                     ${requestScope.article.authorNickname}
                 </button>
                 </button><br/>
-                <span>
+                <span>发布时间：
                     <fmt:formatDate value="${requestScope.article.articleDate}"
+                                    pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                </span><br/>
+                <span>修改时间：
+                    <fmt:formatDate value="${requestScope.article.articleModifyDate}"
                                     pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                 </span>
             </div>
