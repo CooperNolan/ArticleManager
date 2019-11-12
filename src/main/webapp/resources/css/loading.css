@@ -12,7 +12,7 @@
     perspective: 100px;
     transform-type: preserve-3d;
 
-    animation: loader 6s cubic-bezier(0,0,1,1) infinite;
+    animation: loader 6s cubic-bezier(0, 0, 1, 1) infinite;
 
     display: none;
 }
@@ -48,7 +48,7 @@
     transform-origin: 50% 90px;
     transform: rotateZ(30deg);
 
-    animation: dot1 1.5s cubic-bezier(.6,0,.4,1) infinite;
+    animation: dot1 1.5s cubic-bezier(.6, 0, .4, 1) infinite;
 }
 
 .dot:nth-child(2) {
@@ -124,6 +124,7 @@
         transform: rotateZ(330deg) rotateX(10deg);
     }
 }
+
 .full-screen-coverage {
     position: absolute;
     width: 100%;

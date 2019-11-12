@@ -1,37 +1,37 @@
-.container{
+.container {
     max-width: 800px;
     margin: 0px auto;
     padding: 10px;
 }
+
 .form {
     width: 100%;
-    height:auto;
+    height: auto;
     padding: 5% 5%;
     background: #f1f1f1;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
     border-radius: 10px;
 }
-.form h1{
+
+.form h1 {
     text-align: center;
     margin-bottom: 50px;
 }
-.row{
+
+.row {
     padding: 0px 5% 50px 5%;
 }
-.summmary {
-    padding-left: 10%;
-    padding-right: 10%;
-    color: #b3b4ba;
-}
-.row span{
+
+.row span {
     font-size: 1.2em;
     font-weight: bold;
 }
+
 .show-div {
-    table-layout:fixed;
-    word-break:break-all;
-    overflow:hidden;
+    table-layout: fixed;
+    word-break: break-all;
+    overflow: hidden;
 }
 
 .btn {
@@ -49,28 +49,33 @@
     border-radius: 10px;
     margin: 2%;
 }
-.modify,.delete{
+
+.modify, .delete {
     background: linear-gradient(120deg, #8e44ad, red, #8e44ad);
     background-size: 200%;
 }
-.btn:hover{
+
+.btn:hover {
     background-position: right;
 }
-.row button{
+
+.row button {
     font-size: 1.2em;
     font-weight: bold;
     border: none;
     outline: none;
-    background:none;
+    background: none;
     cursor: pointer;
     transition: .4s;
 }
-.row button:hover{
+
+.row button:hover {
     color: #3498db;
 }
-.replyToArticle{
+
+.replyToArticle {
     width: 100%;
-    height:auto;
+    height: auto;
     margin-top: 10px;
     padding: 3% 3%;
     background: #f1f1f1;
@@ -78,20 +83,24 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
     border-radius: 10px;
 }
-.replyToArticle pre{
+
+.replyToArticle pre {
     padding-left: 5%;
 }
+
 .replyToReply {
     height: auto;
     padding-top: 2%;
     padding-left: 10%;
     background: none;
 }
+
 .replyToReply .show-div {
     padding-left: 2px;
     border-left: 4px solid #adadad;
 }
-.row textarea{
+
+.row textarea {
     font-size: 1em;
     color: #333;
     border: none;
@@ -100,16 +109,18 @@
     height: 20%;
     background: none;
     padding: 10px 5px;
-    overflow-x:hidden;
-    overflow-y:visible;
-    vertical-align:middle;
-    resize:none;
+    overflow-x: hidden;
+    overflow-y: visible;
+    vertical-align: middle;
+    resize: none;
     border-top: 2px solid black;
 }
-.replyToReplyInput{
+
+.replyToReplyInput {
     border-bottom: 1px solid black;
 }
-.replyToReplyInput input{
+
+.replyToReplyInput input {
     font-size: 1em;
     color: #333;
     border: none;
@@ -119,6 +130,7 @@
     background: none;
     padding: 10px 5px;
 }
+
 .replyToReplyInput i {
     float: right;
     cursor: pointer;

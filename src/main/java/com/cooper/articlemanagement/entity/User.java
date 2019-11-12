@@ -1,33 +1,34 @@
 package com.cooper.articlemanagement.entity;
 
-
 import java.util.Date;
 
 public class User {
-    private Integer userId;//用户编号
-    private String username;//登录账号
-    private String userpass;//登录密码
-    private String nickname;//用户昵称
-    private String birthday;//出生日期
-    private String gender;//用户性别
-    private String phone;//联系方式
-    private String email;//邮箱
-    private String address;//地址
-    private Date createTime;//创建时间
-    private Date updateTime;//最后修改时间
-    private Date lastLogin;//最后登录时间
-    private Integer userStatus;//用户状态 0 正常 1 锁定 2 管理员
-    private String remark;//个人简介
 
-    public User() {
-    }
+    private Integer userId;// 用户编号
+    private String username;// 登录账号
+    private String userpass;// 登录密码
+    private String nickname;// 用户昵称
+    private String birthday;// 出生日期
+    private String gender;// 用户性别
+    private String phone;// 联系方式
+    private String email;// 邮箱
+    private String address;// 地址
+    private Date createTime;// 创建时间
+    private Date updateTime;// 最后修改时间
+    private Date lastLogin;// 最后登录时间
+    private Integer userStatus;// 用户状态 0 正常 1 锁定 2 管理员
+    private String remark;// 个人简介
+
+    public User() {}
 
     public User(String username, String userpass) {
         this.username = username;
         this.userpass = userpass;
     }
 
-    public User(Integer userId, String username, String userpass, String nickname, String birthday, String gender, String phone, String email, String address, Date createTime, Date updateTime, Date lastLogin, Integer userStatus, String remark) {
+    public User(Integer userId, String username, String userpass, String nickname, String birthday, String gender,
+        String phone, String email, String address, Date createTime, Date updateTime, Date lastLogin,
+        Integer userStatus, String remark) {
         this.userId = userId;
         this.username = username;
         this.userpass = userpass;
@@ -158,21 +159,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", userpass='" + userpass + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", birthday=" + birthday +
-                ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", lastLogin=" + lastLogin +
-                ", userStatus=" + userStatus +
-                ", remark='" + remark + '\'' +
-                '}';
+        return "User{" + "userId=" + userId + ", username='" + username + '\'' + ", userpass='" + userpass + '\''
+            + ", nickname='" + nickname + '\'' + ", birthday=" + birthday + ", gender='" + gender + '\'' + ", phone='"
+            + phone + '\'' + ", email='" + email + '\'' + ", address='" + address + '\'' + ", createTime=" + createTime
+            + ", updateTime=" + updateTime + ", lastLogin=" + lastLogin + ", userStatus=" + userStatus + ", remark='"
+            + remark + '\'' + '}';
     }
 }

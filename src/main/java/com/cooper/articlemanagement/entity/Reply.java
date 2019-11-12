@@ -4,22 +4,24 @@ import java.util.Date;
 import java.util.List;
 
 public class Reply {
-    private Integer replyId;//回复编号
-    private Integer replyGrade;//回复等级 0 留言 1 回复留言
-    private Integer articleId;//文章编号
-    private Integer usersId;//回复人编号
-    private String userNickname;//回复人昵称
-    private Integer forUsersId;//被回复人编号
-    private String forUsersIdNickname;//被回复人昵称
-    private String replyContent;//回复内容
-    private Date replyDate;//回复时间
-    private List<Reply> replyList;//子回复内容
-    private Integer replyStatus;//回复状态 0 正常 1 违规
 
-    public Reply() {
-    }
+    private Integer replyId;// 回复编号
+    private Integer replyGrade;// 回复等级 0 留言 1 回复留言
+    private Integer articleId;// 文章编号
+    private Integer usersId;// 回复人编号
+    private String userNickname;// 回复人昵称
+    private Integer forUsersId;// 被回复人编号
+    private String forUsersIdNickname;// 被回复人昵称
+    private String replyContent;// 回复内容
+    private Date replyDate;// 回复时间
+    private List<Reply> replyList;// 子回复内容
+    private Integer replyStatus;// 回复状态 0 正常 1 违规
 
-    public Reply(Integer replyId, Integer replyGrade, Integer articleId, Integer usersId, String userNickname, Integer forUsersId, String forUsersIdNickname, String replyContent, Date replyDate, List<Reply> replyList, Integer replyStatus) {
+    public Reply() {}
+
+    public Reply(Integer replyId, Integer replyGrade, Integer articleId, Integer usersId, String userNickname,
+        Integer forUsersId, String forUsersIdNickname, String replyContent, Date replyDate, List<Reply> replyList,
+        Integer replyStatus) {
         this.replyId = replyId;
         this.replyGrade = replyGrade;
         this.articleId = articleId;
@@ -123,18 +125,9 @@ public class Reply {
 
     @Override
     public String toString() {
-        return "Reply{" +
-                "replyId=" + replyId +
-                ", replyGrade=" + replyGrade +
-                ", articleId=" + articleId +
-                ", usersId=" + usersId +
-                ", userNickname='" + userNickname + '\'' +
-                ", forUsersId=" + forUsersId +
-                ", forUsersIdNickname='" + forUsersIdNickname + '\'' +
-                ", replyContent='" + replyContent + '\'' +
-                ", replyDate=" + replyDate +
-                ", replyList=" + replyList +
-                ", replyStatus=" + replyStatus +
-                '}';
+        return "Reply{" + "replyId=" + replyId + ", replyGrade=" + replyGrade + ", articleId=" + articleId
+            + ", usersId=" + usersId + ", userNickname='" + userNickname + '\'' + ", forUsersId=" + forUsersId
+            + ", forUsersIdNickname='" + forUsersIdNickname + '\'' + ", replyContent='" + replyContent + '\''
+            + ", replyDate=" + replyDate + ", replyList=" + replyList + ", replyStatus=" + replyStatus + '}';
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cooper.articlemanagement.dao.CategoryDao">
+    <select id="selectById" resultType="com.cooper.articlemanagement.entity.Category">
+        select * from category
+        where category_id = #{categoryId}
+    </select>
+    <select id="selectByStatus" resultType="com.cooper.articlemanagement.entity.Category">
+        select * from category
+        <if test="categoryStatus != null and categoryStatus != '' or categoryStatus == 0">
+            where category_status = #{categoryStatus}
+        </if>
+    </select>
+
+    <sql id="insertCategorySqlList">
+        category_name,category_date,category_status
+    </sql>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="categoryId">
+        insert into category(<include refid="insertCategorySqlList"></include>)
+        values(#{categoryName},#{categoryDate},#{categoryStatus})
+    </insert>
+
+    <update id="update">
+        update category
+        <set>
+            <if test="categoryName != null and categoryName != ''">category_name = #{categoryName},</if>
+            <if test="categoryStatus != null and categoryStatus != '' or 0 == categoryStatus">category_status =
+                #{categoryStatus},
+            </if>
+        </set>
+        where category_id = #{categoryId}
+    </update>
+
+    <delete id="delete">
+        delete from category
+        where category_id = #{categoryId}
+    </delete>
+</mapper>

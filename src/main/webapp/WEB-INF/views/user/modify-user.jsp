@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -17,13 +17,14 @@
             <h1>${sessionScope.USER.username}</h1>
             <div class="row">
                 <label>昵称：</label>
-                <input type="text" id="nickname" value="${sessionScope.USER.nickname}" placeholder="不超过15字" maxlength="15">
+                <input type="text" id="nickname" value="${sessionScope.USER.nickname}" placeholder="不超过15字"
+                       maxlength="15">
             </div>
             <div class="row">
                 <label>密码：</label><span class="lable-prompt" id="userpass-prompt"></span>
                 <input type="password" id="userpass" value="" placeholder="8-18个数字、字母或下划线">
             </div>
-            <div class="row" >
+            <div class="row">
                 <label>生日：</label>
                 <input type="date" id="birthday" value="${sessionScope.USER.birthday}">
             </div>
@@ -35,7 +36,7 @@
                         <option value="女">女</option>
                     </c:if>
                     <c:if test='${sessionScope.USER.gender == "女"}'>
-                        <option value="男" >男</option>
+                        <option value="男">男</option>
                         <option value="女" selected>女</option>
                     </c:if>
                 </select>
@@ -82,7 +83,7 @@
                 <span id="prompt">&nbsp;</span>
             </div>
             <center>
-                <button type="button" class="btn" id="modify">mofidy</button>
+                <button type="button" class="btn" id="modify">Mofidy</button>
                 <button type="button" class="btn" id="writeBack">Home</button>
             </center>
         </form>

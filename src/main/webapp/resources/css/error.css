@@ -1,12 +1,14 @@
-.container{
+.container {
     max-width: 800px;
     margin: 0px auto;
     padding: 10px;
 }
+
 .error-prompt {
     margin: 40% auto;
     text-align: center;
 }
+
 .btn {
     width: 25%;
     min-width: 80px;
@@ -22,6 +24,7 @@
     border-radius: 10px;
     margin: 10px 20px;
 }
-.btn:hover{
+
+.btn:hover {
     background-position: right;
 }

@@ -12,7 +12,7 @@
             <if test="replyGrade != null and replyGrade != '' or replyGrade == 0">
                 and reply_grade = #{replyGrade}
             </if>
-            <if test="replyStatus != null and replyStatus != '' or replyStatus == 0" >
+            <if test="replyStatus != null and replyStatus != '' or replyStatus == 0">
                 and reply_status = #{replyStatus}
             </if>
         </where>
@@ -29,17 +29,20 @@
     <resultMap id="replyListMap" type="com.cooper.articlemanagement.entity.Reply">
         <id property="replyId" column="reply_id"/>
         <result property="replyGrade" column="reply_grade"/>
-        <result property="articleId" column="article_id" />
-        <result property="usersId" column="users_id" />
+        <result property="articleId" column="article_id"/>
+        <result property="usersId" column="users_id"/>
         <result property="forUsersId" column="for_users_id"/>
         <result property="replyContent" column="reply_content"/>
         <result property="replyDate" column="reply_date"/>
         <result property="replyStatus" column="reply_status"/>
-        <collection property="replyList" column="reply_id" ofType="com.cooper.articlemanagement.entity.Reply" select="selectByArticleIdList">
+        <collection property="replyList" column="reply_id" ofType="com.cooper.articlemanagement.entity.Reply"
+                    select="selectByArticleIdList">
         </collection>
-        <collection property="userNickname" column="{user_id = users_id}" javaType="java.lang.String" select="selectUserNickname">
+        <collection property="userNickname" column="{user_id = users_id}" javaType="java.lang.String"
+                    select="selectUserNickname">
         </collection>
-        <collection property="forUsersIdNickname" column="{user_id = for_users_id}" javaType="java.lang.String" select="selectUserNickname">
+        <collection property="forUsersIdNickname" column="{user_id = for_users_id}" javaType="java.lang.String"
+                    select="selectUserNickname">
         </collection>
     </resultMap>
     <select id="selectByArticleIdList" resultMap="replyListMap">

@@ -7,8 +7,7 @@ public class PaginationObject<T> {
     private Integer totalPage;
     private List<T> pageList;
 
-    public PaginationObject() {
-    }
+    public PaginationObject() {}
 
     public PaginationObject(Integer page, Integer totalPage, List<T> pageList) {
         this.page = page;
@@ -42,18 +41,14 @@ public class PaginationObject<T> {
 
     @Override
     public String toString() {
-        return "PaginationObject{" +
-                "page=" + page +
-                ", totalPage=" + totalPage +
-                ", pageList=" + pageList +
-                '}';
+        return "PaginationObject{" + "page=" + page + ", totalPage=" + totalPage + ", pageList=" + pageList + '}';
     }
 
     public static Integer getTotalPage(Integer totalNum) {
         if (totalNum % StaticResources.PAGE_NUM != 0) {
-            return totalNum/StaticResources.PAGE_NUM + 1;
-        }else{
-            return totalNum/StaticResources.PAGE_NUM;
+            return totalNum / StaticResources.PAGE_NUM + 1;
+        } else {
+            return totalNum / StaticResources.PAGE_NUM;
         }
     }
 }

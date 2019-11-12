@@ -12,10 +12,10 @@
     $('#deleteArticle').click(function () {
         loadingShow();
         $.ajax({
-            url:window.location.origin + "/Article/delete",
+            url: window.location.origin + "/Article/delete",
             type: "POST",
-            data:{
-                articleId:window.location.href.substring(window.location.href.lastIndexOf("/")+1)
+            data: {
+                articleId: window.location.href.substring(window.location.href.lastIndexOf("/") + 1)
             },
             dataType: "JSON",
             success: function (data) {
@@ -29,13 +29,15 @@
         })
     });
 });
+
 function searchByAuthorId(search) {
     loadingShow();
     window.location.href = window.location.origin + "/Article/" + $(search).attr("name");
     loadingHide();
 }
+
 function submit_reply_button(reply) {
-    if($('#ReplyToArticle').val() != "") {
+    if ($('#ReplyToArticle').val() != "") {
         loadingShow();
         $.ajax({
             url: window.location.origin + "/Reply/AddReply",
@@ -50,12 +52,12 @@ function submit_reply_button(reply) {
             success: function (data) {
                 if (data.success) {
                     $('#replyDiv').append(
-                        '<div class="replyToArticle" name="'+ data.replyId + '">\n' +
-                        '   <div class="show-div">'+ $('#user-name-label').text()+'&nbsp;&nbsp;&nbsp;&nbsp;刚刚' +
-                        '<pre>'+ $('#ReplyToArticle').val()+'</pre></div>\n' +
+                        '<div class="replyToArticle" name="' + data.replyId + '">\n' +
+                        '   <div class="show-div">' + $('#user-name-label').text() + '&nbsp;&nbsp;&nbsp;&nbsp;刚刚' +
+                        '<pre>' + $('#ReplyToArticle').val() + '</pre></div>\n' +
                         '   <div name="replyToReplyShow">\n' +
                         '   </div>\n' +
-                        '   <div class="replyToReplyInput" name="'+ $('#user-name-label').attr("name") + '">\n' +
+                        '   <div class="replyToReplyInput" name="' + $('#user-name-label').attr("name") + '">\n' +
                         '       <input type="text" name="ReplyToReply" onkeypress="inputReplyToReply(this)" placeholder="不超过100字" maxlength="100">\n' +
                         '       <i class="iconfont icon-huiche" onclick="submit_reply_i(this)"></i>\n' +
                         '   </div>\n' +
@@ -69,8 +71,9 @@ function submit_reply_button(reply) {
         })
     }
 }
+
 function submit_reply_i(reply) {
-    if($(reply).parent().children('input').val() != "") {
+    if ($(reply).parent().children('input').val() != "") {
         loadingShow();
         $.ajax({
             url: window.location.origin + "/Reply/AddReply",
@@ -98,6 +101,7 @@ function submit_reply_i(reply) {
         })
     }
 }
+
 function inputReplyToReply(ReplyToReply) {
     if (event.keyCode == "13") {
         $(ReplyToReply).parent().children('i').click();

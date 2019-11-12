@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
@@ -15,19 +16,24 @@
             <h1>文章编写</h1>
             <div class="row">
                 <label>文章题目：</label>
-                <textarea id="topic"  maxlength="15"
+                <textarea id="topic" maxlength="15"
                           onchange="this.value=this.value.substring(0, 15)"
                           onkeydown="this.value=this.value.substring(0, 15)"
                           onkeyup="this.value=this.value.substring(0, 15)"
                           placeholder="不超过15字">${requestScope.article.articleTopic}</textarea>
             </div>
             <div class="row">
-                <label>文章摘要：</label>
-                <textarea id="summary" maxlength="200"
-                          onchange="this.value=this.value.substring(0, 200)"
-                          onkeydown="this.value=this.value.substring(0, 200)"
-                          onkeyup="this.value=this.value.substring(0, 200)"
-                          placeholder="不超过200字">${requestScope.article.articleSummary}</textarea>
+                <label>文章分类：</label>
+                <select id="category">
+                    <c:forEach items="${requestScope.categoryMap}" var="category">
+                        <c:if test="${category.key == requestScope.article.category.categoryId}">
+                            <option value=${category.key} selected>${category.value}</option>
+                        </c:if>
+                        <c:if test="${category.key != requestScope.article.category.categoryId}">
+                            <option value=${category.key}>${category.value}</option>
+                        </c:if>
+                    </c:forEach>
+                </select>
             </div>
             <div class="row">
                 <label>文章内容：</label>

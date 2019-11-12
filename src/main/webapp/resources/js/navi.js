@@ -22,9 +22,9 @@ $(function () {
     $('#logout').click(function () {
         loadingShow();
         $.ajax({
-            url:window.location.origin + "/logout",
-            type:"post",
-            dataType:"JSON",
+            url: window.location.origin + "/logout",
+            type: "post",
+            dataType: "JSON",
             success: function (data) {
                 if (data.success) {
                     window.location.href = window.location.origin + "/" + data.url;
@@ -38,7 +38,7 @@ $(function () {
     //textarea支持tab缩进
     $("textarea").on(
         'keydown',
-        function(e) {
+        function (e) {
             if (e.keyCode == 9) {
                 e.preventDefault();
                 var indent = '    ';
@@ -58,6 +58,7 @@ function loadingShow() {
     $("#loading").show();
     $(".full-screen-coverage").show();
 }
+
 function loadingHide() {
     $("#loading").hide();
     $("#full-screen-coverage").hide();

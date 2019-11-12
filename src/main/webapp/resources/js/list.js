@@ -7,51 +7,53 @@
     $('.deleteIcon').hover(function () {
         $(this).removeClass("icon-shanchu1");
         $(this).addClass("icon-shanchusuoxuan");
-    },function () {
+    }, function () {
         $(this).removeClass("icon-shanchusuoxuan");
         $(this).addClass("icon-shanchu1");
     });
     $('#Pagination input').bind('keypress', function (event) {
         if (event.keyCode == "13") {
-            if(/^\d+$/.test($('#Pagination input').val())){
-                if($('#Pagination input').val() <= $('#Pagination input').attr('name') && $('#Pagination input').val() > 0) {
+            if (/^\d+$/.test($('#Pagination input').val())) {
+                if ($('#Pagination input').val() <= $('#Pagination input').attr('name') && $('#Pagination input').val() > 0) {
                     loadingShow();
-                    window.location.href = window.location.origin + "/" + getPaginationURI() + "/" + $('#Pagination input').val();
+                    paginationAccess($('#Pagination input').val());
                     loadingHide();
                 }
             }
         }
     });
+    $('#category').on('change', function () {
+        loadingShow();
+        var uri = getURI() + "?category=" + $('#category').val();
+        window.location.href = uri;
+        loadingHide();
+    });
 });
 
 function iconOnClick(i) {
     loadingShow();
-    window.location.href = window.location.origin + "/Article/ShowArticle/"+$(i).attr("name");
+    window.location.href = window.location.origin + "/Article/ShowArticle?articleId=" + $(i).attr("name");
     loadingHide();
 }
 
 function searchArticle() {
-    if ($('#search').val() != "") {
-        var uriList = getURIList();
-        if (uriList[0] != "Home" && uriList[1] != "Search") {
-            var uri = "/Article/" + uriList[1] + "/Search/" + $('#search').val();
-            loadingShow();
-            window.location.href = window.location.origin + uri;
-        } else {
-            loadingShow();
-            window.location.href = window.location.origin + "/Article/Search/"+$('#search').val();
-        }
-        loadingHide();
+    loadingShow();
+    var uri = getURI();
+    if (uri.match("^.*Home$")) {
+        uri = window.location.origin + "/Article/Search";
     }
+    uri = uri + "?category=" + $('#category').val() + "&search=" + $('#search').val().trim();
+    window.location.href = uri;
+    loadingHide();
 }
 
 function deleteIconOnClick(i) {
     loadingShow();
     $.ajax({
-        url:window.location.origin + "/Article/delete",
+        url: window.location.origin + "/Article/delete",
         type: "POST",
-        data:{
-            articleId:$(i).attr("name")
+        data: {
+            articleId: $(i).attr("name")
         },
         dataType: "JSON",
         success: function (data) {
@@ -64,46 +66,38 @@ function deleteIconOnClick(i) {
         }
     })
 }
+
 function paginationLeft(i) {
     loadingShow();
-    window.location.href = window.location.origin + "/"+ getPaginationURI() +"/" + $(i).attr("name");
-    loadingHide();
-}
-function paginationRight(i) {
-    loadingShow();
-    window.location.href = window.location.origin + "/"+ getPaginationURI() +"/" + $(i).attr("name");
+    paginationAccess($(i).attr("name"));
     loadingHide();
 }
 
-function getPaginationURI() {
-    var uriList = getURIList();
-    if (uriList[0] == "Home") {
-        return uriList[0];
-    }else{
-        if (uriList[1] == "Search") {
-            return uriList[0] + "/" + uriList[1] + "/" + uriList[2];
-        } else {
-            if (uriList[2] == "Search") {
-                return uriList[0] + "/" + uriList[1] + "/" + uriList[2] + "/" + uriList[3];
-            } else {
-                return uriList[0] + "/" + uriList[1];
-            }
-        }
-    }
+function paginationRight(i) {
+    loadingShow();
+    paginationAccess($(i).attr("name"));
+    loadingHide();
 }
-function getURIList() {
-    var uri = window.location.href.substring(window.location.origin.length + 1);
-    var uriList = new Array();
-    var index = -1;
-    while (true){
-        index = uri.indexOf("/");
-        if(index != -1){
-            uriList.push(uri.substring(0,index));
-            uri = uri.substring(index+1);
-        }else {
-            uriList.push(uri);
-            break;
-        }
+
+function paginationAccess(page) {
+    var uri = getURI();
+    uri = uri + "?category=" + $('#category').val() + "&page=" + page;
+    uri = uriAddSearch(uri);
+    window.location.href = uri;
+}
+
+function uriAddSearch(uri) {
+    if ($('#searchCache').val().trim() != "") {
+        uri = uri + "&search=" + $('#searchCache').val().trim();
     }
-    return uriList;
+    return uri;
+}
+
+function getURI() {
+    var uri = window.location.href.substring(window.location.origin.length + 1);
+    var i = uri.indexOf("?");
+    if (i != -1) {
+        uri = uri.substring(0, i);
+    }
+    return window.location.origin + "/" + uri;
 }

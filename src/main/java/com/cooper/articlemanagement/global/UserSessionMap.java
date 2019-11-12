@@ -1,16 +1,15 @@
 package com.cooper.articlemanagement.global;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
 import javax.servlet.http.HttpSession;
 
 public class UserSessionMap {
 
     private static ConcurrentMap<Integer, HttpSession> userSessionMap = new ConcurrentHashMap<Integer, HttpSession>();
 
-    public static ConcurrentMap<Integer, HttpSession> getUserSessionMap(){
+    public static ConcurrentMap<Integer, HttpSession> getUserSessionMap() {
         return userSessionMap;
     }
 

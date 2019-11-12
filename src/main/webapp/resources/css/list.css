@@ -1,51 +1,54 @@
-.list{
-  max-width: 800px;
-  margin: auto;
-  padding: 10px;
+.list {
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
 }
-.list .input-search{
-  width: 100%;
-  background: none;
-  border-bottom: 2px solid #000;
+
+.list .input-search {
+    width: 100%;
+    background: none;
+    border-bottom: 2px solid #000;
 }
-.list .input-search .txtb{
-  width: 70%;
-  border: none;
-  background: none;
-  padding: 10px;
-  outline: none;
-  font-size: 18px;
+
+.list .input-search .txtb {
+    width: 70%;
+    border: none;
+    background: none;
+    padding: 10px;
+    outline: none;
+    font-size: 18px;
 }
+
 .list .input-search .search {
-  font-size: 23px;
-  float: right;
-  margin-top: 15px;
-  margin-right: 13px;
-  cursor: pointer;
+    font-size: 23px;
+    float: right;
+    margin-top: 15px;
+    margin-right: 13px;
+    cursor: pointer;
 }
 
-.list h2{
-  margin: 10px 0;
+.list h2 {
+    margin: 10px 0;
 }
 
-.list .task{
-  width: 100%;
-  background: #f1f1f1;
-  padding: 18px;
-  margin: 6px 0;
-  overflow: hidden;
-  box-sizing: border-box;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
-  border-radius: 10px;
+.list .task {
+    width: 100%;
+    background: #f1f1f1;
+    padding: 15px;
+    margin: 6px 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .5);
+    border-radius: 10px;
 }
 
-.list .task i{
-  float: right;
-  margin-left: 20px;
-  margin-top: 4px;
-  cursor: pointer;
+.list .task i {
+    float: right;
+    margin-left: 20px;
+    margin-top: 4px;
+    cursor: pointer;
 }
 
 .list input::-webkit-input-placeholder {
-  color: #032547;
+    color: #032547;
 }

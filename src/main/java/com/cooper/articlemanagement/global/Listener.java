@@ -1,39 +1,38 @@
 package com.cooper.articlemanagement.global;
 
-import com.cooper.articlemanagement.entity.User;
+import java.util.Date;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import javax.servlet.http.HttpSessionBindingEvent;
-import java.util.Date;
+
+import com.cooper.articlemanagement.entity.User;
 
 @WebListener()
-public class Listener implements ServletContextListener,
-        HttpSessionListener, HttpSessionAttributeListener {
+public class Listener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
 
     // Public constructor is required by servlet spec
-    public Listener() {
-    }
+    public Listener() {}
 
     // -------------------------------------------------------
     // ServletContextListener implementation
     // -------------------------------------------------------
     public void contextInitialized(ServletContextEvent sce) {
-      /* This method is called when the servlet context is
+        /* This method is called when the servlet context is
          initialized(when the Web application is deployed). 
          You can initialize servlet context related data here.
-      */
+        */
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
-      /* This method is invoked when the Servlet Context 
+        /* This method is invoked when the Servlet Context 
          (the Web application) is undeployed or 
          Application Server shuts down.
-      */
+        */
     }
 
     // -------------------------------------------------------
@@ -45,10 +44,10 @@ public class Listener implements ServletContextListener,
 
     public void sessionDestroyed(HttpSessionEvent se) {
         /* Session is destroyed. */
-        User user = (User) se.getSession().getAttribute("USER");
+        User user = (User)se.getSession().getAttribute("USER");
         if (user != null) {
             UserSessionMap.destoryHttpSession(user.getUserId());
-            System.out.println("["+new Date()+"] "+user.getUsername()+"已注销");
+            System.out.println("[" + new Date() + "] " + user.getUsername() + "已注销");
         }
     }
 
@@ -57,20 +56,20 @@ public class Listener implements ServletContextListener,
     // -------------------------------------------------------
 
     public void attributeAdded(HttpSessionBindingEvent sbe) {
-      /* This method is called when an attribute 
+        /* This method is called when an attribute 
          is added to a session.
-      */
+        */
     }
 
     public void attributeRemoved(HttpSessionBindingEvent sbe) {
-      /* This method is called when an attribute
+        /* This method is called when an attribute
          is removed from a session.
-      */
+        */
     }
 
     public void attributeReplaced(HttpSessionBindingEvent sbe) {
-      /* This method is invoked when an attibute
+        /* This method is invoked when an attibute
          is replaced in a session.
-      */
+        */
     }
 }

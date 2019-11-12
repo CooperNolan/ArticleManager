@@ -3,29 +3,17 @@ package com.cooper.articlemanagement.entity;
 import java.util.Date;
 
 public class Article {
-    private Integer articleId;//文章编号
-    private Integer authorId;//作者编号
-    private String authorNickname;//作者昵称
-    private String articleTopic;//文章题目
-    private String articleSummary;//摘要
-    private String articleContent;//文章
-    private Date articleDate;//创建时间
-    private Date articleModifyDate;//最后一次修改时间时间
-    private Integer articleStatus;//文章状态 0 正常 1 违规
+    private Integer articleId;// 文章编号
+    private Integer authorId;// 作者编号
+    private String authorNickname;// 作者昵称
+    private String articleTopic;// 文章题目
+    private String articleContent;// 文章
+    private Date articleDate;// 创建时间
+    private Date articleModifyDate;// 最后一次修改时间时间
+    private Integer articleStatus;// 文章状态 0 正常 1 违规
+    private Category category;// 分类类型
 
-    public Article() {
-    }
-
-    public Article(Integer articleId, Integer authorId, String authorNickname, String articleTopic, String articleSummary, String articleContent, Date articleDate, Integer articleStatus) {
-        this.articleId = articleId;
-        this.authorId = authorId;
-        this.authorNickname = authorNickname;
-        this.articleTopic = articleTopic;
-        this.articleSummary = articleSummary;
-        this.articleContent = articleContent;
-        this.articleDate = articleDate;
-        this.articleStatus = articleStatus;
-    }
+    public Article() {}
 
     public Integer getArticleId() {
         return articleId;
@@ -57,14 +45,6 @@ public class Article {
 
     public void setArticleTopic(String articleTopic) {
         this.articleTopic = articleTopic;
-    }
-
-    public String getArticleSummary() {
-        return articleSummary;
-    }
-
-    public void setArticleSummary(String articleSummary) {
-        this.articleSummary = articleSummary;
     }
 
     public String getArticleContent() {
@@ -99,17 +79,19 @@ public class Article {
         this.articleStatus = articleStatus;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
-        return "ArticleTest{" +
-                "articleId=" + articleId +
-                ", authorId=" + authorId +
-                ", authorNickname='" + authorNickname + '\'' +
-                ", articleTopic='" + articleTopic + '\'' +
-                ", articleSummary='" + articleSummary + '\'' +
-                ", articleContent='" + articleContent + '\'' +
-                ", articleDate=" + articleDate +
-                ", articleStatus=" + articleStatus +
-                '}';
+        return "Article{" + "articleId=" + articleId + ", authorId=" + authorId + ", authorNickname='" + authorNickname
+            + '\'' + ", articleTopic='" + articleTopic + '\'' + ", articleContent='" + articleContent + '\''
+            + ", articleDate=" + articleDate + ", articleModifyDate=" + articleModifyDate + ", articleStatus="
+            + articleStatus + ", category=" + category.toString() + '}';
     }
 }

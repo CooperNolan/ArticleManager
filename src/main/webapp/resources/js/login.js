@@ -7,10 +7,10 @@
             window.name = "hasLoad";
         }
     };
-    var reg={
-        username:/^[\w|\.]{6,12}$/,
-        password:/^[\w|\.]{8,18}$/,
-        VerificationCode:/^[A-Za-z0-9]{4}$/
+    var reg = {
+        username: /^[\w|\.]{6,12}$/,
+        password: /^[\w|\.]{8,18}$/,
+        VerificationCode: /^[A-Za-z0-9]{4}$/
     };
 
     $(".txtb input").on("focus", function () {
@@ -82,12 +82,12 @@
         var VerificationCode = $("#VerificationCode").val();
         if (!reg.username.test(registered_username)) {
             $('#registered-username-prompt').show();
-        }else if(!reg.password.test(registered_password)){
+        } else if (!reg.password.test(registered_password)) {
             $('#registered-password-prompt').show();
-        }else if(!reg.VerificationCode.test(VerificationCode)){
+        } else if (!reg.VerificationCode.test(VerificationCode)) {
             $('#registered-prompt').html("验证码错误！");
             $('#captcha_img').click();
-        }else {
+        } else {
             $("#loading").show();
             $(".full-screen-coverage").show();
             $.ajax({
@@ -118,7 +118,7 @@
     var prompt;
 
     $("#registered-username").on("focus", function () {
-        $('#registered-prompt').css("color","black");
+        $('#registered-prompt').css("color", "black");
         prompt = $('#registered-prompt').html();
         $('#registered-prompt').html("提示:6-12个数字、字母或下划线");
     });
@@ -133,7 +133,7 @@
     });
 
     $('#registered-password').on("focus", function () {
-        $('#registered-prompt').css("color","black");
+        $('#registered-prompt').css("color", "black");
         prompt = $('#registered-prompt').html();
         $('#registered-prompt').html("提示:8-18个数字、字母或下划线");
     });

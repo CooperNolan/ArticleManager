@@ -26,16 +26,16 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>-->
     <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${jdbc.drivername}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="${jdbc.drivername}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <!-- 初始化连接大小 -->
-        <property name="initialSize" value="${initialSize}" />
+        <property name="initialSize" value="${initialSize}"/>
         <!-- 连接池最大使用连接数量 -->
-        <property name="maxActive" value="${maxActive}" />
+        <property name="maxActive" value="${maxActive}"/>
         <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${maxWait}" />
+        <property name="maxWait" value="${maxWait}"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.cooper.articlemanagement.dao"/>

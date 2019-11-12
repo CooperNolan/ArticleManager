@@ -7,20 +7,29 @@
         <id property="articleId" column="article_id"/>
         <result property="authorId" column="author_id"/>
         <result property="articleTopic" column="article_topic"/>
-        <result property="articleSummary" column="article_summary"/>
         <result property="articleContent" column="article_content"/>
         <result property="articleDate" column="article_date"/>
         <result property="articleStatus" column="article_status"/>
-        <collection property="authorNickname" column="author_id" javaType="java.lang.String" select="selectUserNickname"/>
+        <collection property="authorNickname" column="author_id" javaType="java.lang.String"
+                    select="selectUserNickname"/>
+        <collection property="category" column="category_id" ofType="com.cooper.articlemanagement.entity.Category"
+                    select="selectCategoryById"/>
     </resultMap>
     <select id="selectUserNickname" resultType="java.lang.String">
         select nickname from users
         where user_id = #{user_id}
     </select>
+    <select id="selectCategoryById" resultType="com.cooper.articlemanagement.entity.Category">
+        select * from category
+        where category_id = #{category_id}
+    </select>
 
-    <select id="select" resultMap="articleResultMap" >
+    <select id="select" resultMap="articleResultMap">
         select * from article
         <where>
+            <if test="categoryId != null and categoryId != ''">
+                and category_id = #{categoryId}
+            </if>
             <if test="search != null and search != ''">
                 article_topic like "%"#{search}"%"
             </if>
@@ -30,21 +39,24 @@
             <if test="articleId != null and articleId != ''">
                 and article_id = #{articleId}
             </if>
-            <if test="articleStatus != null and articleStatus != '' or articleStatus ==0" >
+            <if test="articleStatus != null and articleStatus != '' or 0 == articleStatus">
                 and article_status = #{articleStatus}
             </if>
             order by article_date desc
         </where>
     </select>
-    
+
     <select id="selectHomeTotalNum" resultType="int">
         select count(*) from article
         <where>
-            <if test="articleStatus != null and articleStatus != '' or articleStatus ==0" >
+            <if test="articleStatus != null and articleStatus != '' or 0 == articleStatus">
                 article_status = #{articleStatus}
             </if>
             <if test="authorId != null and authorId != ''">
                 and author_id = #{authorId}
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                and category_id = #{categoryId}
             </if>
             <if test="search != null and search != ''">
                 and article_topic like "%"#{search}"%"
@@ -54,11 +66,14 @@
     <select id="selectHomeList" resultMap="articleResultMap">
         select article_id,article_topic,article_date,article_status,author_id from article
         <where>
-            <if test="articleStatus != null and articleStatus != '' or articleStatus ==0" >
+            <if test="articleStatus != null and articleStatus != '' or 0 == articleStatus">
                 article_status = #{articleStatus}
             </if>
             <if test="authorId != null and authorId != ''">
                 and author_id = #{authorId}
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                and category_id = #{categoryId}
             </if>
             <if test="search != null and search != ''">
                 and article_topic like "%"#{search}"%"
@@ -69,20 +84,24 @@
     </select>
 
     <sql id="insertArticleSqlList">
-        author_id,article_topic,article_summary,article_content,article_date,article_modify_date,article_status
+        author_id,article_topic,category_id,article_content,article_date,article_modify_date,article_status
     </sql>
     <insert id="insert" useGeneratedKeys="true" keyProperty="articleId">
         insert into article(<include refid="insertArticleSqlList"></include>)
-        values(#{authorId},#{articleTopic},#{articleSummary},#{articleContent},#{articleDate},#{articleModifyDate},#{articleStatus})
+        values(#{authorId},#{articleTopic},#{category.categoryId},#{articleContent},#{articleDate},#{articleModifyDate},#{articleStatus})
     </insert>
 
     <update id="update">
         update article
         <set>
             <if test="articleTopic != null and articleTopic != ''">article_topic = #{articleTopic},</if>
-            <if test="articleSummary != null and articleSummary != ''">article_summary = #{articleSummary},</if>
             <if test="articleContent != null and articleContent != ''">article_content = #{articleContent},</if>
-            <if test="articleStatus != null and articleStatus != '' or 0 == articleStatus">article_status = #{articleStatus},</if>
+            <if test="articleStatus != null and articleStatus != '' or 0 == articleStatus">article_status =
+                #{articleStatus},
+            </if>
+            <if test="category.categoryId != null and category.categoryId != '' or 0 == category.categoryId">
+                category_id = #{category.categoryId},
+            </if>
             article_modify_date = #{articleModifyDate},
         </set>
         where article_id = #{articleId}

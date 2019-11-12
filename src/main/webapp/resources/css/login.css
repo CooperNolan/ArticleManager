@@ -1,273 +1,283 @@
-*{
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  font-family: montserrat;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: montserrat;
+    box-sizing: border-box;
 }
 
-body{
-  min-height: 100vh;
-  background-image: linear-gradient(120deg,#3498db,#8e44ad);
+body {
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #3498db, #8e44ad);
 }
 
 .loading {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
 
-  width: 200px;
-  height: 200px;
+    width: 200px;
+    height: 200px;
 
-  margin-top: -100px;
-  margin-left: -100px;
+    margin-top: -100px;
+    margin-left: -100px;
 
-  perspective: 100px;
-  transform-type: preserve-3d;
+    perspective: 100px;
+    transform-type: preserve-3d;
 
-  animation: loader 6s cubic-bezier(0,0,1,1) infinite;
+    animation: loader 6s cubic-bezier(0, 0, 1, 1) infinite;
 
-  display: none;
+    display: none;
 }
 
 /* Loader animation */
 @keyframes loading {
-  0% {
-    transform: rotateX(30deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(30deg) rotateZ(-360deg);
-  }
+    0% {
+        transform: rotateX(30deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(30deg) rotateZ(-360deg);
+    }
 }
 
 /* The dot */
 .dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
 
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 
-  margin-top: -90px;
-  margin-left: -10px;
+    margin-top: -90px;
+    margin-left: -10px;
 
-  border-radius: 10px;
+    border-radius: 10px;
 
-  background-color: #1e3f57;
+    background-color: #1e3f57;
 
-  transform-type: preserve-3d;
-  transform-origin: 50% 90px;
-  transform: rotateZ(30deg);
+    transform-type: preserve-3d;
+    transform-origin: 50% 90px;
+    transform: rotateZ(30deg);
 
-  animation: dot1 1.5s cubic-bezier(.6,0,.4,1) infinite;
+    animation: dot1 1.5s cubic-bezier(.6, 0, .4, 1) infinite;
 }
 
 .dot:nth-child(2) {
-  transform: rotateZ(15deg);
-  animation-name: dot2;
-  animation-delay: 150ms;
-  background-color: #2d556d;
+    transform: rotateZ(15deg);
+    animation-name: dot2;
+    animation-delay: 150ms;
+    background-color: #2d556d;
 }
 
 .dot:nth-child(3) {
-  transform: rotateZ(0deg);
-  animation-name: dot3;
-  animation-delay: 300ms;
-  background-color: #447891;
+    transform: rotateZ(0deg);
+    animation-name: dot3;
+    animation-delay: 300ms;
+    background-color: #447891;
 }
 
 .dot:nth-child(4) {
-  transform: rotateZ(-15deg);
-  animation-name: dot4;
-  animation-delay: 450ms;
-  background-color: #5998b2;
+    transform: rotateZ(-15deg);
+    animation-name: dot4;
+    animation-delay: 450ms;
+    background-color: #5998b2;
 }
 
 .dot:nth-child(5) {
-  transform: rotateZ(-30deg);
-  animation-name: dot5;
-  animation-delay: 600ms;
-  background-color: #6bb2cd;
+    transform: rotateZ(-30deg);
+    animation-name: dot5;
+    animation-delay: 600ms;
+    background-color: #6bb2cd;
 }
 
 /* Dot animations */
 @keyframes dot1 {
-  0% {
-    transform: rotateZ(30deg) rotateX(10deg);
-  }
-  95%, 100% {
-    transform: rotateZ(390deg) rotateX(10deg);
-  }
+    0% {
+        transform: rotateZ(30deg) rotateX(10deg);
+    }
+    95%, 100% {
+        transform: rotateZ(390deg) rotateX(10deg);
+    }
 }
 
 @keyframes dot2 {
-  0% {
-    transform: rotateZ(15deg) rotateX(10deg);
-  }
-  95%, 100% {
-    transform: rotateZ(375deg) rotateX(10deg);
-  }
+    0% {
+        transform: rotateZ(15deg) rotateX(10deg);
+    }
+    95%, 100% {
+        transform: rotateZ(375deg) rotateX(10deg);
+    }
 }
 
 @keyframes dot3 {
-  0% {
-    transform: rotateZ(0deg) rotateX(10deg);
-  }
-  95%, 100% {
-    transform: rotateZ(360deg) rotateX(10deg);
-  }
+    0% {
+        transform: rotateZ(0deg) rotateX(10deg);
+    }
+    95%, 100% {
+        transform: rotateZ(360deg) rotateX(10deg);
+    }
 }
 
 @keyframes dot4 {
-  0% {
-    transform: rotateZ(-15deg) rotateX(10deg);
-  }
-  95%, 100% {
-    transform: rotateZ(345deg) rotateX(10deg);
-  }
+    0% {
+        transform: rotateZ(-15deg) rotateX(10deg);
+    }
+    95%, 100% {
+        transform: rotateZ(345deg) rotateX(10deg);
+    }
 }
 
 @keyframes dot5 {
-  0% {
-    transform: rotateZ(-30deg) rotateX(10deg);
-  }
-  95%, 100% {
-    transform: rotateZ(330deg) rotateX(10deg);
-  }
+    0% {
+        transform: rotateZ(-30deg) rotateX(10deg);
+    }
+    95%, 100% {
+        transform: rotateZ(330deg) rotateX(10deg);
+    }
 }
+
 .full-screen-coverage {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: none;
-  display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    display: none;
 }
 
-.form{
-  width: 380px;
-  height: 580px;
-  padding: 60px 40px;
-  background: #f1f1f1;
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
-  border-radius: 10px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
+.form {
+    width: 380px;
+    height: 580px;
+    padding: 60px 40px;
+    background: #f1f1f1;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.form h1{
-  text-align: center;
-  margin-bottom: 50px;
+.form h1 {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.txtb{
-  border-bottom: 2px solid #adadad;
-  position: relative;
-  margin: 30px 0;
+.txtb {
+    border-bottom: 2px solid #adadad;
+    position: relative;
+    margin: 30px 0;
 }
 
-.txtb input{
-  font-size: 15px;
-  color: #333;
-  border: none;
-  width: 100%;
-  outline: none;
-  background: none;
-  padding: 0 5px;
-  height: 40px;
+.txtb input {
+    font-size: 15px;
+    color: #333;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    height: 40px;
 }
 
-.txtb span::before{
-  content: attr(data-placeholder);
-  color: black;
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  transform: translateY(-50%);
-  z-index: -1;
-  transition: .5s;
+.txtb span::before {
+    content: attr(data-placeholder);
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: .5s;
 }
 
-.txtb span::after{
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background: linear-gradient(120deg,#3498db,#8e44ad);
-  transition: .5s;
+.txtb span::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(120deg, #3498db, #8e44ad);
+    transition: .5s;
 }
 
-.focus + span::before{
-  top: -5px;
-  color: black;
-}
-.focus + span::after{
-  width: 100%;
+.focus + span::before {
+    top: -5px;
+    color: black;
 }
 
-.btn{
-  display: block;
-  width: 100%;
-  height: 50px;
-  border: none;
-  background: linear-gradient(120deg,#3498db,#8e44ad,#3498db);
-  background-size: 200%;
-  color: #fff;
-  outline: none;
-  cursor: pointer;
-  transition: .5s;
-  border-radius: 10px;
+.focus + span::after {
+    width: 100%;
 }
 
-.btn:hover{
-  background-position: right;
+.btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+    background-size: 200%;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 10px;
 }
 
-.bottom-text{
-  margin-top: 60px;
-  text-align: center;
-  font-size: 13px;
+.btn:hover {
+    background-position: right;
 }
+
+.bottom-text {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 13px;
+}
+
 .bottom-text button {
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }
+
 .bottom-text button:hover {
-  border-bottom: 1px solid aqua;
+    border-bottom: 1px solid aqua;
 }
-.prompt{
-  padding-bottom: 10px;
-  color: red;
+
+.prompt {
+    padding-bottom: 10px;
+    color: red;
 }
+
 #registered {
-  display: none;
+    display: none;
 }
+
 .codeLeft {
-  width: 50%;
+    width: 50%;
 }
+
 .codeRight {
-  position: absolute;
-  right: 40px;
-  top: 298px;
+    position: absolute;
+    right: 40px;
+    top: 298px;
 }
-#captcha_img{
-  width: 135px;
-  height: 40px;
+
+#captcha_img {
+    width: 135px;
+    height: 40px;
 }
+
 .registered-prompt {
-  position: absolute;
-  right: 0px;
-  top: 18px;
-  display: none;
+    position: absolute;
+    right: 0px;
+    top: 18px;
+    display: none;
 }
