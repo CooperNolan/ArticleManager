@@ -53,6 +53,7 @@
                 url: window.location.origin + "/User/modifyUser",
                 type: "POST",
                 data: {
+                    userId: $('#userId').val(),
                     userpass: $('#userpass').val(),
                     nickname: $('#nickname').val(),
                     birthday: $('#birthday').val(),
@@ -60,7 +61,7 @@
                     phone: $('#phone').val(),
                     email: $('#email').val(),
                     address: $('#address').val(),
-                    remark: $('#remark').val(),
+                    remark: $('#remark').val()
                 },
                 dataType: "JSON",
                 success: function (data) {

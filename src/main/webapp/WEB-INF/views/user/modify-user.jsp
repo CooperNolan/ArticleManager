@@ -15,6 +15,7 @@
     <div class="container">
         <form class="form">
             <h1>${sessionScope.USER.username}</h1>
+            <input type="hidden" id="userId" value="${sessionScope.USER.userId}">
             <div class="row">
                 <label>昵称：</label>
                 <input type="text" id="nickname" value="${sessionScope.USER.nickname}" placeholder="不超过15字"

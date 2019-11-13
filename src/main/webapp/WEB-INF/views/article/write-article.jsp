@@ -14,6 +14,8 @@
     <div class="container">
         <form class="form">
             <h1>文章编写</h1>
+            <input type="hidden" id="authorId" value="${requestScope.article.authorId}">
+            <input type="hidden" id="articleId" value="${requestScope.article.articleId}">
             <div class="row">
                 <label>文章题目：</label>
                 <textarea id="topic" maxlength="15"

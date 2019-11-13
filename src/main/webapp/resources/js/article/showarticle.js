@@ -6,7 +6,7 @@
     });
     $('#modifyArticle').click(function () {
         loadingShow();
-        window.location.href = window.location.origin + "/Article/ModifyArticle/" + $(this).attr("name");
+        window.location.href = window.location.origin + "/Article/ModifyArticle?articleId=" + $(this).attr("name");
         loadingHide();
     });
     $('#deleteArticle').click(function () {

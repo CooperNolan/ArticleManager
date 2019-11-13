@@ -13,13 +13,16 @@
     <link rel="stylesheet" href="<%=basePath%>/resources/css/list.css">
     <jsp:include page="navi-top.jsp"></jsp:include>
     <div class="list">
-        <c:if test="${requestScope.authorNickname != null}">
-            <div class="row">
-                <center>
-                    <h2>${requestScope.authorNickname}</h2>
-                </center>
-            </div>
-        </c:if>
+        <div class="row">
+            <center>
+                <c:if test="${requestScope.authorNickname != null}">
+                    <h2>作者：${requestScope.authorNickname}</h2>
+                </c:if>
+                <c:if test="${requestScope.authorNickname == null}">
+                    <h2>Article</h2>
+                </c:if>
+            </center>
+        </div>
         <div class="row">
             <select id="category">
                 <option value="0" selected>全部</option>

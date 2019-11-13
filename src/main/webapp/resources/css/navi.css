@@ -199,17 +199,6 @@ body {
     color: #3498db;
 }
 
-.row select {
-    font-size: 1em;
-    color: #333;
-    border: none;
-    width: 100%;
-    outline: none;
-    background: none;
-    padding: 10px 5px;
-    height: 40px;
-}
-
 #chk {
     position: absolute;
     visibility: hidden;
@@ -314,4 +303,16 @@ body::-webkit-scrollbar-thumb {
     margin: 0 auto;
     border-radius: 10px;
     background: #ccc; /*内层轨道*/
+}
+
+select {
+    font-size: 1em;
+    color: #333;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 10px 5px;
+    height: 40px;
+    appearance: none;
 }

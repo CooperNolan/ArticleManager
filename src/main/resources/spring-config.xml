@@ -63,5 +63,5 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
     </aop:config>
 
-    <bean class="com.cooper.articlemanagement.global.LogAdvice"/>
+    <bean class="com.cooper.articlemanagement.global.PermissionVerificationAspect"/>
 </beans>

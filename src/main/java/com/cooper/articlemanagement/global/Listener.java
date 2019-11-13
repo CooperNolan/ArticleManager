@@ -21,6 +21,7 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
     // -------------------------------------------------------
     // ServletContextListener implementation
     // -------------------------------------------------------
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         /* This method is called when the servlet context is
          initialized(when the Web application is deployed). 
@@ -28,6 +29,7 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
         */
     }
 
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
         /* This method is invoked when the Servlet Context 
          (the Web application) is undeployed or 
@@ -38,10 +40,12 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
     // -------------------------------------------------------
     // HttpSessionListener implementation
     // -------------------------------------------------------
+    @Override
     public void sessionCreated(HttpSessionEvent se) {
         /* Session is created. */
     }
 
+    @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         /* Session is destroyed. */
         User user = (User)se.getSession().getAttribute("USER");
@@ -54,19 +58,21 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
     // -------------------------------------------------------
     // HttpSessionAttributeListener implementation
     // -------------------------------------------------------
-
+    @Override
     public void attributeAdded(HttpSessionBindingEvent sbe) {
         /* This method is called when an attribute 
          is added to a session.
         */
     }
 
+    @Override
     public void attributeRemoved(HttpSessionBindingEvent sbe) {
         /* This method is called when an attribute
          is removed from a session.
         */
     }
 
+    @Override
     public void attributeReplaced(HttpSessionBindingEvent sbe) {
         /* This method is invoked when an attibute
          is replaced in a session.

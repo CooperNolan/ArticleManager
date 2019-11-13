@@ -1,37 +1,20 @@
-package com.cooper.articlemanagement.global;
-
-import java.util.Date;
+package com.cooper.articlemanagement.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-@Aspect
-public class LogAdvice {
+public class HttpUtil {
 
-    @Pointcut("execution(* com.cooper.articlemanagement.service.*.*(..))")
-    public void allExecution() {}
-
-    @Before("allExecution()")
-    public void befo(JoinPoint joinPoint) {
-        System.out.println("[" + new Date() + "] 数据库访问中...");
+    public static String getBasePath(HttpServletRequest request) {
+        String path = request.getContextPath();
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
+        return basePath;
     }
 
-    @AfterReturning("allExecution()")
-    public void operationLog(JoinPoint joinPoint) {
-        System.out.println("[" + new Date() + "] 数据库访问结束...");
-    }
-
-    @AfterThrowing("allExecution()")
-    public void systemLog(JoinPoint joinPoint) {
-        System.out.println(joinPoint.toString());
-    }
-
-    public HttpServletRequest getHttpServletRequest() {
+    public static HttpServletRequest getHttpServletRequest() {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         if (requestAttributes == null) {
             return null;
@@ -40,7 +23,11 @@ public class LogAdvice {
         return servletRequestAttributes.getRequest();
     }
 
-    public String getIpAddress(HttpServletRequest request) {
+    public static String getIpAddress(HttpServletRequest request) {
+        if (request == null) {
+            return null;
+        }
+
         String ipAddress = request.getHeader("x-forwarded-for");
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("Proxy-Client-IP");

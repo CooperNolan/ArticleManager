@@ -32,7 +32,8 @@
                 url: window.location.origin + "/Article/modifyArticle",
                 type: "POST",
                 data: {
-                    articleId: window.location.href.substring(window.location.href.lastIndexOf("/") + 1),
+                    authorId: $('#authorId').val(),
+                    articleId: $('#articleId').val(),
                     articleTopic: $('#topic').val(),
                     categoryId: $('#category').val(),
                     articleContent: $('#content').val()

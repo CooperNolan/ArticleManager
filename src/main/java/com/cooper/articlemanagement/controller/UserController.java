@@ -1,11 +1,12 @@
 package com.cooper.articlemanagement.controller;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ import com.cooper.articlemanagement.util.ResponseBodyUtil;
 
 @Controller("userController")
 public class UserController {
+
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
@@ -60,7 +63,7 @@ public class UserController {
                 user.setUserpass(null);
                 session.setAttribute("USER", user);
                 UserSessionMap.putUserSessionMap(user.getUserId(), session);
-                System.out.println("[" + new Date() + "] " + user.getUsername() + "已登录");
+                logger.info(user.getUsername() + " login...");
                 ResponseBodyUtil.responseBody(true, UserStateEnum.LOGIN_SUCCESS.getMsgOrUrl(), response);
                 return;
             }
@@ -96,12 +99,13 @@ public class UserController {
         try {
             userService.insert(user);
         } catch (Exception e) {
+            logger.error("registered errer: " + e.getMessage());
             ResponseBodyUtil.responseBody(false, UserStateEnum.UNKONE_ERROR.getMsgOrUrl(), response);
         }
         user.setUserpass(null);
         session.setAttribute("USER", user);
         UserSessionMap.putUserSessionMap(user.getUserId(), session);
-        System.out.println("[" + new Date() + "] " + user.getUsername() + " 成功注册");
+        logger.info(user.getUsername() + " registered success...");
         ResponseBodyUtil.responseBody(true, UserStateEnum.REGISTERED_SUCCESS.getMsgOrUrl(), response);
     }
 
@@ -118,6 +122,7 @@ public class UserController {
             // 销毁session
             session.invalidate();
         } catch (Exception e) {
+            logger.error("session.invalidate() errer: " + e.getMessage());
             ResponseBodyUtil.responseBody(false, UserStateEnum.LOGOUT_ERROR.getMsgOrUrl(), response);
             return;
         }
@@ -136,12 +141,11 @@ public class UserController {
 
     @RequestMapping(value = "User/modifyUser", method = RequestMethod.POST)
     public void modifyUser(User user, HttpServletResponse response, HttpSession session) throws IOException {
-        User sessionUser = (User)session.getAttribute("USER");
-        user.setUserId(sessionUser.getUserId());
         try {
             userService.update(user);
-            session.setAttribute("USER", userService.selectByUserId(sessionUser.getUserId()));
+            session.setAttribute("USER", userService.selectByUserId(user.getUserId()));
         } catch (Exception e) {
+            logger.error(user.getUsername() + " modifyUser errer: " + e.getMessage());
             ResponseBodyUtil.responseBody(false, UserStateEnum.UNKONE_ERROR.getMsgOrUrl(), response);
         }
         ResponseBodyUtil.responseBody(true, UserStateEnum.UPDATE_SUCCESS.getMsgOrUrl(), response);

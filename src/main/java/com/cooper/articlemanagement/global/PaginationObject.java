@@ -39,11 +39,6 @@ public class PaginationObject<T> {
         this.pageList = pageList;
     }
 
-    @Override
-    public String toString() {
-        return "PaginationObject{" + "page=" + page + ", totalPage=" + totalPage + ", pageList=" + pageList + '}';
-    }
-
     public static Integer getTotalPage(Integer totalNum) {
         if (totalNum % StaticResources.PAGE_NUM != 0) {
             return totalNum / StaticResources.PAGE_NUM + 1;

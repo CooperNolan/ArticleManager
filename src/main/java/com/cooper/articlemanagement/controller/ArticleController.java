@@ -1,13 +1,13 @@
 package com.cooper.articlemanagement.controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +22,15 @@ import com.cooper.articlemanagement.service.ArticleService;
 import com.cooper.articlemanagement.service.ReplyService;
 import com.cooper.articlemanagement.service.UserService;
 import com.cooper.articlemanagement.util.ConfigUtil;
-import com.cooper.articlemanagement.util.GetPathUtil;
+import com.cooper.articlemanagement.util.HttpUtil;
 import com.cooper.articlemanagement.util.ResponseBodyUtil;
 import com.cooper.articlemanagement.util.StringUtil;
 
 @Controller("articleController")
 @RequestMapping("Article")
 public class ArticleController {
+
+    private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
     @Autowired
     ArticleService articleService;
@@ -63,27 +65,37 @@ public class ArticleController {
         try {
             articleId = Integer.parseInt(request.getParameter("articleId"));
         } catch (Exception e) {
+            logger.error("{}({}) ShowArticle errer: {}",
+                ((User)request.getSession().getAttribute("USER")).getUsername(), HttpUtil.getIpAddress(request),
+                e.getMessage());
             return "redirect:/Home";
         }
         map.put("article", articleService.selectByArticleId(articleId));
         map.put("replyList", replyService.selectByArticleId(articleId));
-        System.out.println("[" + new Date() + "] 查看文章" + articleId);
         return "article/show-article";
     }
 
     /**
      * 跳转修改页面
-     *
+     * 
      * @param map
+     * @param request
      * @return
      */
-    @RequestMapping(value = "/ModifyArticle/{articleId}", method = RequestMethod.GET)
-    public String toModifyArticle(@PathVariable(value = "articleId") Integer articleId, Map<String, Object> map,
-        HttpSession session, HttpServletRequest request) {
-        User user = (User)session.getAttribute("USER");
+    @RequestMapping(value = "/ModifyArticle", method = RequestMethod.GET)
+    public String toModifyArticle(Map<String, Object> map, HttpServletRequest request) {
+        User user = (User)request.getSession().getAttribute("USER");
+        Integer articleId = null;
+        try {
+            articleId = Integer.parseInt(request.getParameter("articleId"));
+        } catch (Exception e) {
+            logger.error("{}({}) ShowArticle errer: {}", user.getUsername(), HttpUtil.getIpAddress(request),
+                e.getMessage());
+            return "redirect:" + HttpUtil.getBasePath(request) + "/Home";
+        }
         Article article = articleService.selectByArticleId(articleId);
         if (!article.getAuthorId().equals(user.getUserId())) {
-            return "redirect:" + GetPathUtil.getBasePath(request) + "/Home";
+            return "redirect:" + HttpUtil.getBasePath(request) + "/Home";
         }
         map.put("article", article);
         map.put("categoryMap", ConfigUtil.getCateporyIdAndNameMap());
@@ -93,18 +105,23 @@ public class ArticleController {
 
     /**
      * 修改文章
-     *
+     * 
      * @param article
+     * @param categoryId
+     * @param request
      * @param response
      * @throws IOException
      */
-
     @RequestMapping(value = "/modifyArticle", method = RequestMethod.POST)
-    public void modifyArticle(Article article, Integer categoryId, HttpServletResponse response) throws IOException {
+    public void modifyArticle(Article article, Integer categoryId, HttpServletRequest request,
+        HttpServletResponse response) throws IOException {
         article.setCategory(new Category(categoryId));
         try {
             articleService.update(article);
         } catch (Exception e) {
+            logger.error("{}({}) modifyArticle errer: {}",
+                ((User)request.getSession().getAttribute("USER")).getUsername(), HttpUtil.getIpAddress(request),
+                e.getMessage());
             ResponseBodyUtil.responseBody(false, ArticleStateEnum.UNKONE_ERROR.getMsgOrUrl(), response);
         }
         ResponseBodyUtil.responseBody(true,
@@ -158,22 +175,25 @@ public class ArticleController {
 
     /**
      * 添加文章
-     *
+     * 
      * @param article
+     * @param categoryId
+     * @param request
      * @param response
-     * @param session
      * @throws IOException
      */
     @RequestMapping(value = "/AddArticle", method = RequestMethod.POST)
-    public void addArticle(Article article, Integer categoryId, HttpServletResponse response, HttpSession session)
-        throws IOException {
-        User user = (User)session.getAttribute("USER");
+    public void addArticle(Article article, Integer categoryId, HttpServletRequest request,
+        HttpServletResponse response) throws IOException {
+        User user = (User)request.getSession().getAttribute("USER");
         article.setAuthorId(user.getUserId());
         article.setAuthorNickname(user.getNickname());
         article.setCategory(new Category(categoryId));
         try {
             articleService.insert(article);
         } catch (Exception e) {
+            logger.error("{}({}) AddArticle errer: {}", ((User)request.getSession().getAttribute("USER")).getUsername(),
+                HttpUtil.getIpAddress(request), e.getMessage());
             ResponseBodyUtil.responseBody(false, ArticleStateEnum.UNKONE_ERROR.getMsgOrUrl(), response);
         }
         ResponseBodyUtil.responseBody(true,
@@ -182,16 +202,20 @@ public class ArticleController {
 
     /**
      * 删除文章
-     *
+     * 
      * @param articleId
+     * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public void delete(Integer articleId, HttpServletResponse response) throws IOException {
+    public void delete(Integer articleId, HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             articleService.delete(articleId);
         } catch (Exception e) {
+            logger.error("{}({}) deleteArticle errer: {}",
+                ((User)request.getSession().getAttribute("USER")).getUsername(), HttpUtil.getIpAddress(request),
+                e.getMessage());
             ResponseBodyUtil.responseBody(false, ArticleStateEnum.UNKONE_ERROR.getMsgOrUrl(), response);
         }
         ResponseBodyUtil.responseBody(true, ArticleStateEnum.DELETE_SUCCES.getMsgOrUrl(), response);
