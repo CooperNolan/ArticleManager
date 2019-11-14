@@ -1,9 +1,4 @@
 ﻿$(function () {
-    $('#showBack').click(function () {
-        loadingShow();
-        window.location.href = document.referrer;
-        loadingHide();
-    });
     $('#modifyArticle').click(function () {
         loadingShow();
         window.location.href = window.location.origin + "/Article/ModifyArticle?articleId=" + $(this).attr("name");
@@ -40,7 +35,7 @@ function submit_reply_button(reply) {
     if ($('#ReplyToArticle').val() != "") {
         loadingShow();
         $.ajax({
-            url: window.location.origin + "/Reply/AddReply",
+            url: window.location.origin + "/Reply/add",
             type: "POST",
             data: {
                 replyGrade: 0,
@@ -76,7 +71,7 @@ function submit_reply_i(reply) {
     if ($(reply).parent().children('input').val() != "") {
         loadingShow();
         $.ajax({
-            url: window.location.origin + "/Reply/AddReply",
+            url: window.location.origin + "/Reply/add",
             type: "POST",
             data: {
                 replyGrade: $(reply).parent().parent().attr("name"),

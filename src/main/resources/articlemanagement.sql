@@ -45,14 +45,15 @@ CREATE TABLE reply (
 
 CREATE TABLE category (
   category_id int(11) NOT NULL AUTO_INCREMENT COMMENT '分类编号',
-  category_name text NOT NULL COMMENT '分类名称',
+  category_name varchar(20) NOT NULL unique COMMENT '分类名称',
   category_date datetime NOT NULL COMMENT '分类添加时间',
   category_status int(2) NOT NULL COMMENT '分类状态 0 正常 1 违规',
   PRIMARY KEY (category_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 ALTER TABLE article
-ADD FOREIGN KEY(author_id) REFERENCES users(user_id);
+ADD FOREIGN KEY(author_id) REFERENCES users(user_id)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE article
 ADD FOREIGN KEY(category_id) REFERENCES category(category_id)

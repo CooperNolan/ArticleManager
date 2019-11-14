@@ -13,9 +13,7 @@ public class Article {
     private Integer articleStatus;// 文章状态 0 正常 1 违规
     private Category category;// 分类类型
 
-    public Article() {
-        category = new Category();
-    }
+    public Article() {}
 
     public Integer getArticleId() {
         return articleId;

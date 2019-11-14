@@ -2,25 +2,12 @@ package com.cooper.articlemanagement.util;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
 public class HttpUtil {
 
     public static String getBasePath(HttpServletRequest request) {
         String path = request.getContextPath();
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
         return basePath;
-    }
-
-    public static HttpServletRequest getHttpServletRequest() {
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        if (requestAttributes == null) {
-            return null;
-        }
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)requestAttributes;
-        return servletRequestAttributes.getRequest();
     }
 
     public static String getIpAddress(HttpServletRequest request) {

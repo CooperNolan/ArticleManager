@@ -92,12 +92,3 @@ function uriAddSearch(uri) {
     }
     return uri;
 }
-
-function getURI() {
-    var uri = window.location.href.substring(window.location.origin.length + 1);
-    var i = uri.indexOf("?");
-    if (i != -1) {
-        uri = uri.substring(0, i);
-    }
-    return window.location.origin + "/" + uri;
-}

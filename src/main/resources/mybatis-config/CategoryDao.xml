@@ -13,6 +13,10 @@
             where category_status = #{categoryStatus}
         </if>
     </select>
+    <select id="selectByName" resultType="com.cooper.articlemanagement.entity.Category">
+        select * from category
+        where category_name like "%"#{categoryName}"%"
+    </select>
 
     <sql id="insertCategorySqlList">
         category_name,category_date,category_status

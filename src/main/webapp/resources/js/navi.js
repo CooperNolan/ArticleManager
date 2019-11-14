@@ -19,6 +19,11 @@ $(function () {
         window.location.href = window.location.origin + "/Article/WriteArticle";
         loadingHide();
     });
+    $('#categoryManager').click(function () {
+        loadingShow();
+        window.location.href = window.location.origin + "/Category/manager";
+        loadingHide();
+    });
     $('#logout').click(function () {
         loadingShow();
         $.ajax({
@@ -62,4 +67,13 @@ function loadingShow() {
 function loadingHide() {
     $("#loading").hide();
     $("#full-screen-coverage").hide();
+}
+
+function getURI() {
+    var uri = window.location.href.substring(window.location.origin.length + 1);
+    var i = uri.indexOf("?");
+    if (i != -1) {
+        uri = uri.substring(0, i);
+    }
+    return window.location.origin + "/" + uri;
 }

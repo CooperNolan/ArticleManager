@@ -6,7 +6,7 @@
         if (onblurTopic()) {
             loadingShow();
             $.ajax({
-                url: window.location.origin + "/Article/AddArticle",
+                url: window.location.origin + "/Article/add",
                 type: "post",
                 data: {
                     articleTopic: $('#topic').val(),
@@ -29,7 +29,7 @@
         if (onblurTopic()) {
             loadingShow();
             $.ajax({
-                url: window.location.origin + "/Article/modifyArticle",
+                url: window.location.origin + "/Article/modify",
                 type: "POST",
                 data: {
                     authorId: $('#authorId').val(),

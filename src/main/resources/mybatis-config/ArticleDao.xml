@@ -107,6 +107,11 @@
         where article_id = #{articleId}
     </update>
 
+    <update id="updateCategoryByDelete">
+        update article set category_id = #{categoryIdAfter}
+        where category_id = #{categoryIdBefore}
+    </update>
+
     <delete id="delete">
         delete from article
         where article_id = #{articleId}

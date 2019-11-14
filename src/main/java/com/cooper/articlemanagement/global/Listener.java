@@ -1,7 +1,5 @@
 package com.cooper.articlemanagement.global;
 
-import java.util.Date;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -10,10 +8,15 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cooper.articlemanagement.entity.User;
 
 @WebListener()
 public class Listener implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
+
+    private static Logger logger = LoggerFactory.getLogger(Listener.class);
 
     // Public constructor is required by servlet spec
     public Listener() {}
@@ -51,7 +54,7 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
         User user = (User)se.getSession().getAttribute("USER");
         if (user != null) {
             UserSessionMap.destoryHttpSession(user.getUserId());
-            System.out.println("[" + new Date() + "] " + user.getUsername() + "已注销");
+            logger.warn(user.getUsername() + "logout...");
         }
     }
 

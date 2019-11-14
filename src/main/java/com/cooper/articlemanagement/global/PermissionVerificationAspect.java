@@ -21,6 +21,9 @@ public class PermissionVerificationAspect {
     @Autowired
     ArticleService articleService;
 
+    @Autowired
+    HttpServletRequest request;
+
     @Around("execution(* com.cooper.articlemanagement.controller.UserController.modifyUser(..))")
     public Object modifyUserExecution(ProceedingJoinPoint jp) throws Throwable {
         return permissionVerification(jp, new PermissionVerification() {
@@ -72,17 +75,29 @@ public class PermissionVerificationAspect {
         });
     }
 
+    @Around("execution(* com.cooper.articlemanagement.controller.CategoryController.*(..))")
+    public Object categoryControllerExecution(ProceedingJoinPoint jp) throws Throwable {
+        return permissionVerification(jp, new PermissionVerification() {
+            @Override
+            public boolean[] isPermission(Object object, User userSession) {
+                if (userSession.getUserStatus() != 2) {
+                    return new boolean[] {true, true};
+                }
+                return new boolean[] {false, true};
+            }
+        });
+    }
+
     public Object permissionVerification(ProceedingJoinPoint jp, PermissionVerification permissionVerification)
         throws Throwable {
         if (permissionVerification == null) {
             return null;
         }
-        HttpServletRequest request = null;
+        User userSession = null;
         try {
-            request = HttpUtil.getHttpServletRequest();
             if (request != null && request.getSession() != null) {
                 Object[] objects = jp.getArgs();
-                User userSession = (User)request.getSession().getAttribute("USER");
+                userSession = (User)request.getSession().getAttribute("USER");
                 for (Object object : objects) {
                     boolean[] booleans = permissionVerification.isPermission(object, userSession);
                     if (booleans[0]) {
@@ -99,7 +114,7 @@ public class PermissionVerificationAspect {
                 logger.warn("request or session is null");
             }
         } catch (Exception e) {
-            logger.error(HttpUtil.getIpAddress(request) + " " + e.getMessage());
+            logger.error(userSession.getNickname() + "(" + HttpUtil.getIpAddress(request) + ") " + e.getMessage());
         }
         return null;
     }

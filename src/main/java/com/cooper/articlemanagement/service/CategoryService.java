@@ -10,6 +10,8 @@ public interface CategoryService {
 
     List<Category> selectByCategoryStatus(Integer categoryStatus);
 
+    List<Category> selectByCategoryName(String categoryName);
+
     void selectByZeroStatusCache();
 
     int insert(Category category) throws MyRuntimeException;

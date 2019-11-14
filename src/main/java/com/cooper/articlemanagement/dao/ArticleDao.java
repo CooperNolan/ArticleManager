@@ -22,6 +22,9 @@ public interface ArticleDao {
 
     int update(Article article);
 
+    int updateCategoryByDelete(@Param("categoryIdBefore") Integer categoryIdBefore,
+        @Param("categoryIdAfter") Integer categoryIdAfter);
+
     int delete(@Param("articleId") Integer articleId);
 
     Integer selectHomeTotalNum(Map<String, Object> map);

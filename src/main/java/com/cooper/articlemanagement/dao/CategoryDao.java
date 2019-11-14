@@ -14,6 +14,8 @@ public interface CategoryDao {
 
     List<Category> selectByStatus(@Param("categoryStatus") Integer categoryStatus);
 
+    List<Category> selectByName(@Param("categoryName") String categoryName);
+
     int insert(Category category);
 
     int update(Category category);

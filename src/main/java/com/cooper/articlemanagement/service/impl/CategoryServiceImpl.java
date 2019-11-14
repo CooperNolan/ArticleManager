@@ -1,7 +1,7 @@
 package com.cooper.articlemanagement.service.impl;
 
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.cooper.articlemanagement.dao.ArticleDao;
 import com.cooper.articlemanagement.dao.CategoryDao;
 import com.cooper.articlemanagement.entity.Category;
 import com.cooper.articlemanagement.myexception.MyRuntimeException;
@@ -21,6 +22,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     @Qualifier("categoryDao")
     CategoryDao categoryDao;
+
+    @Autowired
+    @Qualifier("articleDao")
+    ArticleDao articleDao;
 
     /**
      * 根据ID查询分类
@@ -49,10 +54,21 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void selectByZeroStatusCache() {
         List<Category> categoryList = selectByCategoryStatus(0);
-        Map<Integer, String> cateporyIdAndNameMap = new HashMap<>();
+        Map<Integer, String> categoryIdAndNameMap = new LinkedHashMap<>();
         categoryList
-            .forEach(category -> cateporyIdAndNameMap.put(category.getCategoryId(), category.getCategoryName()));
-        ConfigUtil.setCateporyIdAndNameMap(cateporyIdAndNameMap);
+            .forEach(category -> categoryIdAndNameMap.put(category.getCategoryId(), category.getCategoryName()));
+        ConfigUtil.setCategoryIdAndNameMap(categoryIdAndNameMap);
+    }
+
+    /**
+     * 根据分类名称搜索分类
+     * 
+     * @param categoryName
+     * @return
+     */
+    @Override
+    public List<Category> selectByCategoryName(String categoryName) {
+        return categoryDao.selectByName(categoryName);
     }
 
     /**
@@ -65,14 +81,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public int insert(Category category) throws MyRuntimeException {
         category.setCategoryDate(new Date());
-        category.setCategoryStatus(0);
+        if (category.getCategoryStatus() == null) {
+            category.setCategoryStatus(0);
+        }
         int influences = 0;
         try {
             influences = categoryDao.insert(category);
         } catch (Exception e) {
             throw new MyRuntimeException(e.getMessage(), e);
         }
-        ConfigUtil.getCateporyIdAndNameMap().put(category.getCategoryId(), category.getCategoryName());
+        if (category.getCategoryStatus() == 0) {
+            ConfigUtil.getCategoryIdAndNameMap().put(category.getCategoryId(), category.getCategoryName());
+        }
         return influences;
     }
 
@@ -91,7 +111,13 @@ public class CategoryServiceImpl implements CategoryService {
         } catch (Exception e) {
             throw new MyRuntimeException(e.getMessage(), e);
         }
-        ConfigUtil.getCateporyIdAndNameMap().put(category.getCategoryId(), category.getCategoryName());
+        Map<Integer, String> categoryIdAndNameMap = ConfigUtil.getCategoryIdAndNameMap();
+        if (categoryIdAndNameMap.containsKey(category.getCategoryId())) {
+            categoryIdAndNameMap.remove(category.getCategoryId());
+        }
+        if (category.getCategoryStatus() == 0) {
+            categoryIdAndNameMap.put(category.getCategoryId(), category.getCategoryName());
+        }
         return influences;
     }
 
@@ -106,11 +132,14 @@ public class CategoryServiceImpl implements CategoryService {
     public int delete(Integer categoryId) throws MyRuntimeException {
         int influences = 0;
         try {
+            articleDao.updateCategoryByDelete(categoryId, 1);
             influences = categoryDao.delete(categoryId);
         } catch (Exception e) {
             throw new MyRuntimeException(e.getMessage(), e);
         }
-        ConfigUtil.getCateporyIdAndNameMap().remove(categoryId);
+        if (ConfigUtil.getCategoryIdAndNameMap().containsKey(categoryId)) {
+            ConfigUtil.getCategoryIdAndNameMap().remove(categoryId);
+        }
         return influences;
     }
 }

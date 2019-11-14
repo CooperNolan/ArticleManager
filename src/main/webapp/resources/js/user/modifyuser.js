@@ -50,7 +50,7 @@
         } else {
             loadingShow();
             $.ajax({
-                url: window.location.origin + "/User/modifyUser",
+                url: window.location.origin + "/User/modify",
                 type: "POST",
                 data: {
                     userId: $('#userId').val(),
@@ -66,11 +66,12 @@
                 dataType: "JSON",
                 success: function (data) {
                     if (data.success) {
-                        window.location.href = window.location.origin + "/" + data.url;
+                        $('#user-name-label').html($('#nickname').val());
+                        alert("success");
                     } else {
                         $('#prompt').html(data.msg);
-                        loadingHide();
                     }
+                    loadingHide();
                 }
             })
         }

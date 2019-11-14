@@ -11,7 +11,7 @@ public class ConfigUtil {
 
     private static ConfigUtil instanse = null;
 
-    private Map<Integer, String> cateporyIdAndNameMap = null;
+    private Map<Integer, String> categoryIdAndNameMap = null;
 
     private Set<String> loginInterceptorSet = null;
 
@@ -33,12 +33,12 @@ public class ConfigUtil {
 
     }
 
-    public static Map<Integer, String> getCateporyIdAndNameMap() {
-        return getInstanse().cateporyIdAndNameMap;
+    public static Map<Integer, String> getCategoryIdAndNameMap() {
+        return getInstanse().categoryIdAndNameMap;
     }
 
-    public static void setCateporyIdAndNameMap(Map<Integer, String> cateporyIdAndNameMap) {
-        getInstanse().cateporyIdAndNameMap = cateporyIdAndNameMap;
+    public static void setCategoryIdAndNameMap(Map<Integer, String> categoryIdAndNameMap) {
+        getInstanse().categoryIdAndNameMap = categoryIdAndNameMap;
     }
 
     public static Set<String> getLoginInterceptorSet(HttpServletRequest request) {
