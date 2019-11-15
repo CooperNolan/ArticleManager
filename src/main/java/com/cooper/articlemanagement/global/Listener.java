@@ -54,7 +54,7 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
         User user = (User)se.getSession().getAttribute("USER");
         if (user != null) {
             UserSessionMap.destoryHttpSession(user.getUserId());
-            logger.warn(user.getUsername() + "logout...");
+            logger.warn(user.getUsername() + " logout...");
         }
     }
 

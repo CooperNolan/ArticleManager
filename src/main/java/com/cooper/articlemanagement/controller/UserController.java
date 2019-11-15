@@ -102,17 +102,15 @@ public class UserController extends BaseModelAttribute {
      * 
      * @return
      */
-    @RequestMapping(value = "logout", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "User/logout", method = RequestMethod.GET)
     public String logout() {
         try {
             // 销毁session
             session.invalidate();
         } catch (Exception e) {
             logger.error("session.invalidate() errer: " + e.getMessage());
-            return ResponseBodyUtil.responseBody(false, UserStateEnum.LOGOUT_ERROR.getMsgOrUrl());
         }
-        return ResponseBodyUtil.responseBody(true, UserStateEnum.LOGOUT_SUCCESS.getMsgOrUrl());
+        return "redirect:/Login";
     }
 
     /**

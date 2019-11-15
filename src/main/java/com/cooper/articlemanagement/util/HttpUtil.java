@@ -1,6 +1,11 @@
 package com.cooper.articlemanagement.util;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class HttpUtil {
 
@@ -33,5 +38,23 @@ public class HttpUtil {
         }
 
         return ipAddress;
+    }
+
+    public static HttpServletRequest getHttpServletRequest() {
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        if (requestAttributes == null) {
+            return null;
+        }
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)requestAttributes;
+        return servletRequestAttributes.getRequest();
+    }
+
+    public synchronized static HttpServletResponse getHttpServletResponse() {
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        if (requestAttributes == null) {
+            return null;
+        }
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)requestAttributes;
+        return servletRequestAttributes.getResponse();
     }
 }

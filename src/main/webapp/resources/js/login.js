@@ -1,12 +1,4 @@
 ﻿$(function () {
-    window.onload = function () {
-        if (window.name == "hasLoad") {
-            location.reload();
-            window.name = "";
-        } else {
-            window.name = "hasLoad";
-        }
-    };
     var reg = {
         username: /^[\w|\.]{6,12}$/,
         password: /^[\w|\.]{8,18}$/,

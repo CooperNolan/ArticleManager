@@ -26,19 +26,8 @@ $(function () {
     });
     $('#logout').click(function () {
         loadingShow();
-        $.ajax({
-            url: window.location.origin + "/logout",
-            type: "post",
-            dataType: "JSON",
-            success: function (data) {
-                if (data.success) {
-                    window.location.href = window.location.origin + "/" + data.url;
-                } else {
-                    window.location.href = window.location.origin + "/Login";
-                }
-                loadingHide();
-            }
-        })
+        window.location.href = window.location.origin + "/User/logout";
+        loadingHide();
     });
     //textarea支持tab缩进
     $("textarea").on(

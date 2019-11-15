@@ -57,17 +57,18 @@ public class VerificationInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
         throws Exception {
-        User user = (User)request.getSession().getAttribute("USER");
-        String uri = request.getRequestURI();
-        Long consumeTime = System.currentTimeMillis() - startTime.get();
-        startTime.remove();
-        if (user != null) {
-            logger.info(">>>>>>>>>>>> " + user.getUsername() + "(" + HttpUtil.getIpAddress(request) + "):" + uri
-                + " access end (耗时：" + consumeTime + "ms) >>>>>>>>>>>>");
-        } else {
-            logger.info(">>>>>>>>>>>> " + HttpUtil.getIpAddress(request) + ":" + uri + " access end (耗时：" + consumeTime
+        try {
+            User user = (User)request.getSession().getAttribute("USER");
+            logger.info(">>>>>>>>>>>> " + user.getUsername() + "(" + HttpUtil.getIpAddress(request) + "):"
+                + request.getRequestURI() + " access end (耗时：" + (System.currentTimeMillis() - startTime.get())
                 + "ms) >>>>>>>>>>>>");
+        } catch (Exception e) {
+            logger.info(">>>>>>>>>>>> " + HttpUtil.getIpAddress(request) + ":" + request.getRequestURI()
+                + " access end (耗时：" + (System.currentTimeMillis() - startTime.get()) + "ms) >>>>>>>>>>>>");
+        } finally {
+            startTime.remove();
         }
+
     }
 
     /**

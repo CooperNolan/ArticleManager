@@ -13,6 +13,7 @@ import com.cooper.articlemanagement.entity.Article;
 import com.cooper.articlemanagement.entity.User;
 import com.cooper.articlemanagement.service.ArticleService;
 import com.cooper.articlemanagement.util.HttpUtil;
+import com.cooper.articlemanagement.util.ResponseBodyUtil;
 
 @Aspect
 public class PermissionVerificationAspect {
@@ -20,9 +21,6 @@ public class PermissionVerificationAspect {
 
     @Autowired
     ArticleService articleService;
-
-    @Autowired
-    HttpServletRequest request;
 
     @Around("execution(* com.cooper.articlemanagement.controller.UserController.modifyUser(..))")
     public Object modifyUserExecution(ProceedingJoinPoint jp) throws Throwable {
@@ -94,7 +92,9 @@ public class PermissionVerificationAspect {
             return null;
         }
         User userSession = null;
+        HttpServletRequest request = null;
         try {
+            request = HttpUtil.getHttpServletRequest();
             if (request != null && request.getSession() != null) {
                 Object[] objects = jp.getArgs();
                 userSession = (User)request.getSession().getAttribute("USER");
@@ -103,7 +103,7 @@ public class PermissionVerificationAspect {
                     if (booleans[0]) {
                         logger.warn("{}({}) 非法访问({})！ {}", userSession.getUsername(), HttpUtil.getIpAddress(request),
                             request.getRequestURI(), object.toString());
-                        return null;
+                        return ResponseBodyUtil.responseBody(false, "No Permission");
                     }
                     if (booleans[1]) {
                         break;
@@ -114,9 +114,9 @@ public class PermissionVerificationAspect {
                 logger.warn("request or session is null");
             }
         } catch (Exception e) {
-            logger.error(userSession.getNickname() + "(" + HttpUtil.getIpAddress(request) + ") " + e.getMessage());
+            logger.error(userSession.getUsername() + "(" + HttpUtil.getIpAddress(request) + ") " + e.getMessage());
         }
-        return null;
+        return ResponseBodyUtil.responseBody(false, "No Permission");
     }
 
     private interface PermissionVerification {

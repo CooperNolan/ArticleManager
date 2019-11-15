@@ -92,6 +92,6 @@ public class Article {
         return "Article{" + "articleId=" + articleId + ", authorId=" + authorId + ", authorNickname='" + authorNickname
             + '\'' + ", articleTopic='" + articleTopic + '\'' + ", articleContent='" + articleContent + '\''
             + ", articleDate=" + articleDate + ", articleModifyDate=" + articleModifyDate + ", articleStatus="
-            + articleStatus + ", category=" + category.toString() + '}';
+            + articleStatus + ", category=" + category + '}';
     }
 }
