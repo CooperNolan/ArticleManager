@@ -9,7 +9,7 @@
     <title>登录</title>
     <link rel="stylesheet" href="<%=basePath%>/resources/css/login.css">
     <link rel="stylesheet" href="<%=basePath%>/resources/css/loading.css">
-    <link rel="shortcut icon" href="/resources/favicon.ico">
+    <link rel="shortcut icon" href="/resources/image/favicon.ico">
 </head>
 <body>
 <%
@@ -70,11 +70,7 @@
     </div>
 </form>
 <div class="loading" id="loading">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+    <span class="loading-span" style="color: black">Loading...</span>
 </div>
 <div class="full-screen-coverage" id="full-screen-coverage"></div>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>

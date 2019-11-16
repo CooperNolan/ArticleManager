@@ -67,7 +67,7 @@
                 success: function (data) {
                     if (data.success) {
                         $('#user-name-label').html($('#nickname').val());
-                        alert("success");
+                        alert_success();
                     } else {
                         $('#prompt').html(data.msg);
                     }

@@ -6,7 +6,7 @@
 
     <groupId>com.cooper</groupId>
     <artifactId>ArticleManager</artifactId>
-    <version>1.4.1-SNAPSHOT</version>
+    <version>1.4.2-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <repositories>

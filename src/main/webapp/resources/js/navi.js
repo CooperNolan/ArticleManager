@@ -66,3 +66,7 @@ function getURI() {
     }
     return window.location.origin + "/" + uri;
 }
+
+function alert_success() {
+    alert("success");
+}

@@ -1,15 +1,11 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://at.alicdn.com/t/font_1298741_gw7g40ueihl.css">
-<link rel="shortcut icon" href="/resources/favicon.ico">
+<link rel="shortcut icon" href="/resources/image/favicon.ico">
 </head>
 <body>
 <div class="loading" id="loading">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+    <span class="loading-span" style="color: black">Loading...</span>
 </div>
 <div class="full-screen-coverage" id="full-screen-coverage"></div>
 <div class="header">

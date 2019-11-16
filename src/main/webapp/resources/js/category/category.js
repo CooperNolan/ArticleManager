@@ -61,7 +61,7 @@ function modifyOnClick(i) {
         dataType: "JSON",
         success: function (data) {
             if (data.success) {
-                alert("success");
+                alert_success();
             } else {
                 alert(data.msg);
             }

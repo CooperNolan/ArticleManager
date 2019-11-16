@@ -1,3 +1,7 @@
+body {
+    font-family: "montserrat", sans-serif;
+}
+
 .container {
     max-width: 800px;
     margin: 0px auto;
@@ -5,26 +9,37 @@
 }
 
 .error-prompt {
-    margin: 40% auto;
+    margin: 30% auto;
     text-align: center;
+}
+
+.error-prompt h1 {
+    font-size: 160px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 20px;
+    background: black;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 .btn {
     width: 25%;
-    min-width: 80px;
+    min-width: 200px;
     height: 50px;
-    font-size: 1.2em;
+    font-size: 14px;
     border: none;
-    background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+    background: #e55039aa;
     background-size: 200%;
     color: #fff;
     outline: none;
     cursor: pointer;
-    transition: .5s;
-    border-radius: 10px;
+    transition: 0.4s;
+    border-radius: 25px;
     margin: 10px 20px;
+    padding: 12px 24px;
 }
 
 .btn:hover {
-    background-position: right;
+    background: #e55039;
 }
