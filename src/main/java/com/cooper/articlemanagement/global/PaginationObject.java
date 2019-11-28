@@ -2,6 +2,8 @@ package com.cooper.articlemanagement.global;
 
 import java.util.List;
 
+import com.cooper.articlemanagement.util.ConfigUtil;
+
 public class PaginationObject<T> {
     private Integer page;
     private Integer totalPage;
@@ -40,10 +42,10 @@ public class PaginationObject<T> {
     }
 
     public static Integer getTotalPage(Integer totalNum) {
-        if (totalNum % StaticResources.PAGE_NUM != 0) {
-            return totalNum / StaticResources.PAGE_NUM + 1;
+        if (totalNum % ConfigUtil.PAGE_NUM != 0) {
+            return totalNum / ConfigUtil.PAGE_NUM + 1;
         } else {
-            return totalNum / StaticResources.PAGE_NUM;
+            return totalNum / ConfigUtil.PAGE_NUM;
         }
     }
 }

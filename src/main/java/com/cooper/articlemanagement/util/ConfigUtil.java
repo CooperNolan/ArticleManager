@@ -15,6 +15,8 @@ public class ConfigUtil {
 
     private Set<String> loginInterceptorSet = null;
 
+    public final static Integer PAGE_NUM = 6;
+
     private ConfigUtil() {}
 
     public static ConfigUtil getInstanse() {

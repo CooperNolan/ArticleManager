@@ -245,7 +245,7 @@ footer {
 }
 
 body::-webkit-scrollbar {
-    width: 20px;
+    width: 10px;
     height: 2px;
     background: white;
     border-radius: 10px; /*外层轨道*/
@@ -253,7 +253,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
     display: block;
-    width: 6px;
+    width: 2px;
     margin: 0 auto;
     border-radius: 10px;
     background: #ccc; /*内层轨道*/

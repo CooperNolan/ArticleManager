@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import com.cooper.articlemanagement.dao.ArticleDao;
 import com.cooper.articlemanagement.entity.Article;
 import com.cooper.articlemanagement.global.PaginationObject;
-import com.cooper.articlemanagement.global.StaticResources;
 import com.cooper.articlemanagement.myexception.MyRuntimeException;
 import com.cooper.articlemanagement.service.ArticleService;
+import com.cooper.articlemanagement.util.ConfigUtil;
 
 @Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
@@ -30,8 +30,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PaginationObject<Article> selectAll(Integer categoryId, Integer page) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("page", (page - 1) * StaticResources.PAGE_NUM);
-        map.put("pageNum", StaticResources.PAGE_NUM);
+        map.put("page", (page - 1) * ConfigUtil.PAGE_NUM);
+        map.put("pageNum", ConfigUtil.PAGE_NUM);
         map.put("articleStatus", 0);
         map.put("categoryId", categoryId);
         Integer totalNum = articleDao.selectHomeTotalNum(map);
@@ -65,8 +65,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PaginationObject<Article> selectByAuthorId(Integer categoryId, Integer page, Integer authorId) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("page", (page - 1) * StaticResources.PAGE_NUM);
-        map.put("pageNum", StaticResources.PAGE_NUM);
+        map.put("page", (page - 1) * ConfigUtil.PAGE_NUM);
+        map.put("pageNum", ConfigUtil.PAGE_NUM);
         map.put("authorId", authorId);
         map.put("articleStatus", 0);
         map.put("categoryId", categoryId);
@@ -90,8 +90,8 @@ public class ArticleServiceImpl implements ArticleService {
     public PaginationObject<Article> selectByAuthorId(Integer categoryId, Integer page, Integer authorId,
         Integer articleStatus) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("page", (page - 1) * StaticResources.PAGE_NUM);
-        map.put("pageNum", StaticResources.PAGE_NUM);
+        map.put("page", (page - 1) * ConfigUtil.PAGE_NUM);
+        map.put("pageNum", ConfigUtil.PAGE_NUM);
         map.put("authorId", authorId);
         map.put("articleStatus", articleStatus);
         map.put("categoryId", categoryId);
@@ -115,8 +115,8 @@ public class ArticleServiceImpl implements ArticleService {
     public PaginationObject<Article> selectByAuthorId(Integer categoryId, Integer page, Integer authorId,
         String search) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("page", (page - 1) * StaticResources.PAGE_NUM);
-        map.put("pageNum", StaticResources.PAGE_NUM);
+        map.put("page", (page - 1) * ConfigUtil.PAGE_NUM);
+        map.put("pageNum", ConfigUtil.PAGE_NUM);
         map.put("authorId", authorId);
         map.put("search", search);
         map.put("articleStatus", 0);
@@ -139,8 +139,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PaginationObject<Article> selectBySearch(Integer categoryId, Integer page, String search) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("page", (page - 1) * StaticResources.PAGE_NUM);
-        map.put("pageNum", StaticResources.PAGE_NUM);
+        map.put("page", (page - 1) * ConfigUtil.PAGE_NUM);
+        map.put("pageNum", ConfigUtil.PAGE_NUM);
         map.put("search", search);
         map.put("articleStatus", 0);
         map.put("categoryId", categoryId);
@@ -164,8 +164,8 @@ public class ArticleServiceImpl implements ArticleService {
     public PaginationObject<Article> selectBySearch(Integer categoryId, Integer page, String search,
         Integer articleStatus) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("page", (page - 1) * StaticResources.PAGE_NUM);
-        map.put("pageNum", StaticResources.PAGE_NUM);
+        map.put("page", (page - 1) * ConfigUtil.PAGE_NUM);
+        map.put("pageNum", ConfigUtil.PAGE_NUM);
         map.put("search", search);
         map.put("articleStatus", articleStatus);
         map.put("categoryId", categoryId);
